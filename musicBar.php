@@ -14,16 +14,20 @@
 
             <?php
             // Truy vấn cơ sở dữ liệu để lấy các bài hát
-            $sql = "SELECT s.sid AS id, s.sname AS sname, a.aname AS aname , s.simage AS simage , s.slink AS slink 
+            $sql = "(SELECT s.sid AS id, s.sname AS sname, a.aname AS aname , s.simage AS simage , s.slink AS slink 
             FROM songs s
             JOIN artists a ON s.aid = a.aid
-
-          
-            UNION
-
-            SELECT po.poid AS podcast_id, po.poname AS podcast_name, a.aname AS artist_name ,po.poimage AS podcast_image, po.polink AS podcast_link
+            ORDER BY RAND()
+            LIMIT 50)
+            
+            UNION ALL
+            
+            (SELECT po.poid AS id, po.poname AS sname, a.aname AS aname ,po.poimage AS simage , po.polink AS slink
             FROM podcasts po
-            JOIN artists a ON po.aid = a.aid";
+            JOIN artists a ON po.aid = a.aid
+            ORDER BY RAND()
+            LIMIT 50)
+            LIMIT 50;";
             $result = $conn->query($sql);
 
             // Hiển thị các liên kết đến bài hát và thêm chúng vào mảng songs
