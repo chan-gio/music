@@ -90,10 +90,10 @@
             var currentSongAuthor = document.getElementById('currentSongAuthor');
             var currentSongImage = document.getElementById('currentSongImage');
             
-            // Cập nhật thông tin bài hát đang phát lên phần "Now Playing"
-            var queueSongTitle = document.getElementById('queueSongTitle');
-            var queueSongAuthor = document.getElementById('queueSongAuthor');
-            var queueSongImage = document.getElementById('queueSongImage');
+            // // Cập nhật thông tin bài hát đang phát lên phần "Now Playing"
+            // var queueSongTitle = document.getElementById('queueSongTitle');
+            // var queueSongAuthor = document.getElementById('queueSongAuthor');
+            // var queueSongImage = document.getElementById('queueSongImage');
             
             currentSongTitle.innerText = "Bài hát: " + currentSong.title;
             currentSongAuthor.innerText = "Tác giả: " + currentSong.author;
@@ -109,9 +109,9 @@
 
             // Đối với phần "Now Playing", bạn muốn cập nhật thông tin của bài hát hiện tại, không phải của queueSongTitle, queueSongAuthor và queueSongImage.
             // Bạn cũng cần cập nhật src của queueSongImage, không phải của queueSongTitle.
-            queueSongTitle.innerText = "Bài hát: " + currentSong.title;
-            queueSongAuthor.innerText = "Tác giả: " + currentSong.author;
-            queueSongImage.src = currentSong.image;
+            // queueSongTitle.innerText = "Bài hát: " + currentSong.title;
+            // queueSongAuthor.innerText = "Tác giả: " + currentSong.author;
+            // queueSongImage.src = currentSong.image;
         }
 
 
@@ -311,10 +311,4 @@
     <style>
         .playing {
     display: none;
-}
-    </style>
-<<<<<<< Updated upstream
-    <!-- testo ở đây -->
-=======
-    <!-- kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk -->
->>>>>>> Stashed changes
+}   </style>

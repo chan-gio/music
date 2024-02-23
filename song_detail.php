@@ -44,6 +44,13 @@
                 $image = "images/".$row["simage"];
                 $aname = isset($row["aname"]) ? $row["aname"] : "Unknown";
         ?>
+        // Tạo một hàm xử lý sự kiện click cho mỗi liên kết đến bài hát
+        function createClickHandler(index) {
+                    return function() {
+                        currentSongIndex = index; // Cập nhật vị trí của bài hát được chọn
+                        playCurrentSong(); // Phát bài hát được chọn
+                    };
+                }
                 var listItem = document.createElement('li');
                 var link = document.createElement('a');
                 link.href = 'javascript:void(0)';
