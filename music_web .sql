@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 22, 2024 lúc 12:13 PM
+-- Thời gian đã tạo: Th2 24, 2024 lúc 07:16 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -32,15 +32,16 @@ CREATE TABLE `albums` (
   `alname` varchar(255) NOT NULL,
   `alimage` varchar(255) NOT NULL,
   `alview` int(11) NOT NULL,
-  `aid` int(11) NOT NULL
+  `aid` int(11) NOT NULL,
+  `alstatus` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `albums`
 --
 
-INSERT INTO `albums` (`alid`, `alname`, `alimage`, `alview`, `aid`) VALUES
-(4, 'moi', '2.jpg', 0, 3);
+INSERT INTO `albums` (`alid`, `alname`, `alimage`, `alview`, `aid`, `alstatus`) VALUES
+(4, 'moi', '2.jpg', 0, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -72,16 +73,17 @@ CREATE TABLE `artists` (
   `aid` int(11) NOT NULL,
   `aname` varchar(255) NOT NULL,
   `aimage` varchar(255) NOT NULL,
-  `aview` int(11) NOT NULL
+  `aview` int(11) NOT NULL,
+  `astatus` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `artists`
 --
 
-INSERT INTO `artists` (`aid`, `aname`, `aimage`, `aview`) VALUES
-(3, 'Hoàng Thùy Linh', '2.jpg', 0),
-(4, 'Jack', '3.jpg', 0);
+INSERT INTO `artists` (`aid`, `aname`, `aimage`, `aview`, `astatus`) VALUES
+(3, 'Hoàng Thùy Linh', '2.jpg', 0, 1),
+(4, 'Jack', '3.jpg', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -90,15 +92,16 @@ INSERT INTO `artists` (`aid`, `aname`, `aimage`, `aview`) VALUES
 --
 
 CREATE TABLE `playlist` (
-  `pid` int(11) NOT NULL
+  `pid` int(11) NOT NULL,
+  `pname` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `playlist`
 --
 
-INSERT INTO `playlist` (`pid`) VALUES
-(1);
+INSERT INTO `playlist` (`pid`, `pname`) VALUES
+(1, '');
 
 -- --------------------------------------------------------
 
@@ -112,15 +115,16 @@ CREATE TABLE `podcasts` (
   `poimage` varchar(255) NOT NULL,
   `polink` varchar(255) NOT NULL,
   `poview` int(11) NOT NULL DEFAULT 0,
-  `aid` int(11) NOT NULL
+  `aid` int(11) NOT NULL,
+  `postatus` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `podcasts`
 --
 
-INSERT INTO `podcasts` (`poid`, `poname`, `poimage`, `polink`, `poview`, `aid`) VALUES
-(2, 'dang cap', 'Fukumean.jpg', '2.mp3', 0, 4);
+INSERT INTO `podcasts` (`poid`, `poname`, `poimage`, `polink`, `poview`, `aid`, `postatus`) VALUES
+(2, 'dang cap', 'Fukumean.jpg', '2.mp3', 0, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -135,17 +139,17 @@ CREATE TABLE `songs` (
   `slink` varchar(255) NOT NULL,
   `aid` int(11) DEFAULT NULL,
   `sview` int(11) NOT NULL DEFAULT 0,
-  `slike` int(11) NOT NULL DEFAULT 0
+  `sstatus` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `songs`
 --
 
-INSERT INTO `songs` (`sid`, `sname`, `simage`, `slink`, `aid`, `sview`, `slike`) VALUES
-(4, 'Hồng nhan', 'Hong-Nhan-Jack.jpg', 'Hong-Nhan-Jack.mp3', 4, 0, 0),
-(6, 'number 2', 'ChiMuonBenEmLucNay.jpg', 'ChiMuonBenEmLucNay.mp3', 3, 0, 0),
-(7, 'so 3', '3.jpg', '3.mp3', 4, 0, 0);
+INSERT INTO `songs` (`sid`, `sname`, `simage`, `slink`, `aid`, `sview`, `sstatus`) VALUES
+(4, 'Hồng nhan', 'Hong-Nhan-Jack.jpg', 'Hong-Nhan-Jack.mp3', 4, 0, 1),
+(6, 'number 2', 'ChiMuonBenEmLucNay.jpg', 'ChiMuonBenEmLucNay.mp3', 3, 0, 1),
+(7, 'so 3', '3.jpg', '3.mp3', 4, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -177,15 +181,16 @@ CREATE TABLE `user` (
   `uemail` varchar(255) NOT NULL,
   `uname` varchar(255) NOT NULL,
   `upassword` varchar(255) NOT NULL,
-  `pid` int(11) NOT NULL
+  `pid` int(11) NOT NULL,
+  `ustatus` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `user`
 --
 
-INSERT INTO `user` (`uid`, `uemail`, `uname`, `upassword`, `pid`) VALUES
-(2, '[value-2]', '[value-3]', '[value-4]', 1);
+INSERT INTO `user` (`uid`, `uemail`, `uname`, `upassword`, `pid`, `ustatus`) VALUES
+(2, '[value-2]', '[value-3]', '[value-4]', 1, 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
