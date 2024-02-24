@@ -57,25 +57,23 @@
             ?>
         </div>
 
-        <div>
+        <!-- <div>
             <p>Top Podcasts</p>
             <?php
-                $sql2 = "SELECT * FROM podcasts
-                        ORDER BY poview DESC LIMIT 0,10";
-                $result2 = $conn->query($sql2);
+                // $sql2 = "SELECT * FROM podcasts
+                //         ORDER BY poview DESC LIMIT 0,10";
+                // $result2 = $conn->query($sql2);
 
-                if ($result2->num_rows > 0) {
-                    while($row2 = $result2->fetch_assoc()) {
-                        $poid = $row2["poid"];
-                        $poname = $row2["poname"];
-                        $poimage = "podcasts/".$row2["poimage"];
-                        echo "<a href='index.php?sort=podcast_detail&id=$poid'><img src='$poimage' alt='$poname'></a>";
-                        echo $poname;
-                    }
-                }
+                // if ($result2->num_rows > 0) {
+                //     while($row2 = $result2->fetch_assoc()) {
+                //         $poid = $row2["poid"];
+                //         $poname = $row2["poname"];
+                //         $poimage = "podcasts/".$row2["poimage"];
+                //         echo "<a href='index.php?sort=podcast_detail&id=$poid'><img src='$poimage' alt='$poname'></a>";
+                //         echo $poname;
+                //     }
+                // }
                 ?>
-        </div>
-        <?php
-        ?>
+        </div> -->
         </div>
     </div>  

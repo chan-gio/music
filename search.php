@@ -18,12 +18,12 @@ $searchQuery = "SELECT 'song' AS type, s.sid AS id, s.sname AS name, a.aname AS 
                 JOIN artists a ON al.aid = a.aid
                 WHERE al.alname LIKE '%$query%'
                 
-                UNION
+                -- UNION
 
-                SELECT 'podcast' AS type, po.poid AS podcast_id, po.poname AS podcast_name, a.aname AS artist_name ,po.poimage AS podcast_image, '' AS podcast_link
-                FROM podcasts po
-                JOIN artists a ON po.aid = a.aid
-                WHERE po.poname LIKE '%$query%'  
+                -- SELECT 'podcast' AS type, po.poid AS podcast_id, po.poname AS podcast_name, a.aname AS artist_name ,po.poimage AS podcast_image, '' AS podcast_link
+                -- FROM podcasts po
+                -- JOIN artists a ON po.aid = a.aid
+                -- WHERE po.poname LIKE '%$query%'  
 
                  UNION
 
