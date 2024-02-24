@@ -48,6 +48,9 @@
             case 'artist_detail':
                 require("artist_detail.php");
                 break;
+            case 'playList_detail':
+                require("playList_detail.php");
+                break;
             default:
                 require("mainContent.php");
                 break;

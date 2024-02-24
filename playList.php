@@ -2,6 +2,8 @@
     <ul id="playList">
         <!-- Danh sách bài hát sẽ được thêm vào đây bằng JavaScript -->
     </ul>
+    <button id="addPlayList">Thêm Play List</button>
+    <button id="deletePlayList">Xóa Play List</button>
 </div>
 
 <script>
@@ -9,84 +11,60 @@
     var audioPlayer = new Audio();
     var songs = []; // Mảng chứa danh sách bài hát
 
-    // Hàm phát bài hát hiện tại
-    function playCurrentSong() {
-        var currentSong = songs[currentSongIndex];
-        audioPlayer.src = currentSong.url;
-        audioPlayer.play();
-
-        var currentSongTitle = document.getElementById('currentSongTitle');
-        var currentSongAuthor = document.getElementById('currentSongAuthor');
-        var currentSongImage = document.getElementById('currentSongImage');
-
-        currentSongTitle.innerText = "Bài hát: " + currentSong.title;
-        currentSongAuthor.innerText = "Tác giả: " + currentSong.author;
-        currentSongImage.src = currentSong.image;
-    }
-
     // Sự kiện DOMContentLoaded để tạo danh sách bài hát
     document.addEventListener('DOMContentLoaded', function() {
         var playList = document.getElementById('playList');
+        var addPlayListButton = document.getElementById('addPlayList');
+        var deletePlayListButton = document.getElementById('deletePlayList');
 
         <?php
         // Truy vấn cơ sở dữ liệu để lấy các bài hát
-        $sql = "SELECT c.*, d.aname FROM playlist a
-                JOIN songs_playlist b ON a.pid = b.pid
-                JOIN songs c ON b.sid = c.sid
-                JOIN artists d ON d.aid = c.aid";
+        $sql = "SELECT a.* FROM playlist a
+                JOIN user b ON a.uid = b.uid";
+        //WHERE a.uid = $uid";
         $result = $conn->query($sql);
 
         // Hiển thị các liên kết đến bài hát
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                $title = $row["sname"];
-                $url = "songs/".$row["slink"];
-                $image = "images/".$row["simage"];
-                $aname = isset($row["aname"]) ? $row["aname"] : "Unknown";
+                $plid = $row["pid"];
+                $title = $row["pname"];
         ?>
-        // Tạo một hàm xử lý sự kiện click cho mỗi liên kết đến bài hát
-        function createClickHandler(index) {
-                    return function() {
-                        currentSongIndex = index; // Cập nhật vị trí của bài hát được chọn
-                        playCurrentSong(); // Phát bài hát được chọn
-                    };
-                }
-                var listItem = document.createElement('li');
+                // Tạo một liên kết cho mỗi bài hát
                 var link = document.createElement('a');
-                link.href = 'javascript:void(0)';
                 link.innerText = '<?php echo $title;?>';
-                link.addEventListener('click', function() {
-                    // Lấy index của bài hát được click
-                    var index = songs.findIndex(function(song) {
-                        return song.url === '<?php echo $url; ?>';
-                    });
-                    if (index !== -1) {
-                        currentSongIndex = index;
-                        playCurrentSong();
-                    }
+                link.href = "index.php?sort=playList_detail&id=" + <?php echo $plid; ?>;
+                
+                // Tạo một list item và thêm link vào đó
+                var listItem = document.createElement('li');
+                listItem.appendChild(link);
+                
+                // Thêm sự kiện click để điều hướng người dùng đến trang chi tiết bài hát
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+                    window.location.href = this.href;
                 });
 
-                var img = document.createElement('img');
-                img.src = '<?php echo $image; ?>';
-                img.alt = '<?php echo $title; ?>';
-                img.style.width = '50px'; // Có thể điều chỉnh kích thước ảnh tùy ý
-
-                listItem.appendChild(img); // Thêm ảnh vào mục danh sách
-                listItem.appendChild(link);
+                // Thêm listItem vào danh sách phát
                 playList.appendChild(listItem);
-
-                // Thêm bài hát vào mảng songs
-                songs.push({
-                    title: '<?php echo $title; ?>',
-                    url: '<?php echo $url; ?>',
-                    author: '<?php echo $aname; ?>',
-                    image: '<?php echo $image; ?>'
-                });z
         <?php
             }
         } else {
             echo "console.log('0 results');";
         }
         ?>
+
+        // Thêm sự kiện click cho nút "Thêm Play List"
+        addPlayListButton.addEventListener('click', function() {
+            // Xử lý logic khi người dùng nhấn nút "Thêm Play List"
+            // Ví dụ: chuyển người dùng đến trang thêm Play List
+            window.location.href = "add_playlist.php";
+        });
+
+        // Thêm sự kiện click cho nút "Xóa Play List"
+        deletePlayListButton.addEventListener('click', function() {
+            // Xử lý logic khi người dùng nhấn nút "Xóa Play List"
+            // Ví dụ: hiển thị một thông báo xác nhận và gửi yêu cầu xóa Play List đến máy chủ
+        });
     });
 </script>
