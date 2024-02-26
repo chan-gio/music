@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 24, 2024 lúc 07:16 AM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.0.28
+-- Host: localhost:3306
+-- Generation Time: Feb 26, 2024 at 07:22 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,31 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `music_web`
+-- Database: `music_web`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `albums`
+-- Table structure for table `admins`
+--
+
+CREATE TABLE `admins` (
+  `adname` varchar(11) NOT NULL,
+  `adpassword` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`adname`, `adpassword`) VALUES
+('admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `albums`
 --
 
 CREATE TABLE `albums` (
@@ -37,7 +55,7 @@ CREATE TABLE `albums` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `albums`
+-- Dumping data for table `albums`
 --
 
 INSERT INTO `albums` (`alid`, `alname`, `alimage`, `alview`, `aid`, `alstatus`) VALUES
@@ -46,7 +64,7 @@ INSERT INTO `albums` (`alid`, `alname`, `alimage`, `alview`, `aid`, `alstatus`) 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `albums_songs`
+-- Table structure for table `albums_songs`
 --
 
 CREATE TABLE `albums_songs` (
@@ -56,7 +74,7 @@ CREATE TABLE `albums_songs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `albums_songs`
+-- Dumping data for table `albums_songs`
 --
 
 INSERT INTO `albums_songs` (`id`, `alid`, `sid`) VALUES
@@ -66,7 +84,7 @@ INSERT INTO `albums_songs` (`id`, `alid`, `sid`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `artists`
+-- Table structure for table `artists`
 --
 
 CREATE TABLE `artists` (
@@ -78,7 +96,7 @@ CREATE TABLE `artists` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `artists`
+-- Dumping data for table `artists`
 --
 
 INSERT INTO `artists` (`aid`, `aname`, `aimage`, `aview`, `astatus`) VALUES
@@ -88,25 +106,28 @@ INSERT INTO `artists` (`aid`, `aname`, `aimage`, `aview`, `astatus`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `playlist`
+-- Table structure for table `playlist`
 --
 
 CREATE TABLE `playlist` (
   `pid` int(11) NOT NULL,
-  `pname` varchar(255) NOT NULL
+  `pname` varchar(255) NOT NULL,
+  `uid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `playlist`
+-- Dumping data for table `playlist`
 --
 
-INSERT INTO `playlist` (`pid`, `pname`) VALUES
-(1, '');
+INSERT INTO `playlist` (`pid`, `pname`, `uid`) VALUES
+(4, 'Tên Playlist mới', 8),
+(5, 'Tên Playlist mới', 8),
+(6, 'Tên Playlist mới', 8);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `podcasts`
+-- Table structure for table `podcasts`
 --
 
 CREATE TABLE `podcasts` (
@@ -120,7 +141,7 @@ CREATE TABLE `podcasts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `podcasts`
+-- Dumping data for table `podcasts`
 --
 
 INSERT INTO `podcasts` (`poid`, `poname`, `poimage`, `polink`, `poview`, `aid`, `postatus`) VALUES
@@ -129,7 +150,7 @@ INSERT INTO `podcasts` (`poid`, `poname`, `poimage`, `polink`, `poview`, `aid`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `songs`
+-- Table structure for table `songs`
 --
 
 CREATE TABLE `songs` (
@@ -143,7 +164,7 @@ CREATE TABLE `songs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `songs`
+-- Dumping data for table `songs`
 --
 
 INSERT INTO `songs` (`sid`, `sname`, `simage`, `slink`, `aid`, `sview`, `sstatus`) VALUES
@@ -154,7 +175,7 @@ INSERT INTO `songs` (`sid`, `sname`, `simage`, `slink`, `aid`, `sview`, `sstatus
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `songs_playlist`
+-- Table structure for table `songs_playlist`
 --
 
 CREATE TABLE `songs_playlist` (
@@ -163,17 +184,10 @@ CREATE TABLE `songs_playlist` (
   `pid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Đang đổ dữ liệu cho bảng `songs_playlist`
---
-
-INSERT INTO `songs_playlist` (`id`, `sid`, `pid`) VALUES
-(1, 4, 1);
-
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -181,30 +195,31 @@ CREATE TABLE `user` (
   `uemail` varchar(255) NOT NULL,
   `uname` varchar(255) NOT NULL,
   `upassword` varchar(255) NOT NULL,
-  `pid` int(11) NOT NULL,
   `ustatus` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `user`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`uid`, `uemail`, `uname`, `upassword`, `pid`, `ustatus`) VALUES
-(2, '[value-2]', '[value-3]', '[value-4]', 1, 1);
+INSERT INTO `user` (`uid`, `uemail`, `uname`, `upassword`, `ustatus`) VALUES
+(8, 'ducanhb8a4@gmail.com', 'DucAnh4r', '123', 1),
+(9, 'dadasdadasd', 'DucAnh4r222', '222', 1),
+(10, 'ducanhb8a4@gmail.com22', 'DucAnh4radsa', '123', 1);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `albums`
+-- Indexes for table `albums`
 --
 ALTER TABLE `albums`
   ADD PRIMARY KEY (`alid`),
   ADD KEY `aid` (`aid`);
 
 --
--- Chỉ mục cho bảng `albums_songs`
+-- Indexes for table `albums_songs`
 --
 ALTER TABLE `albums_songs`
   ADD PRIMARY KEY (`id`),
@@ -212,33 +227,34 @@ ALTER TABLE `albums_songs`
   ADD KEY `alid` (`alid`);
 
 --
--- Chỉ mục cho bảng `artists`
+-- Indexes for table `artists`
 --
 ALTER TABLE `artists`
   ADD PRIMARY KEY (`aid`);
 
 --
--- Chỉ mục cho bảng `playlist`
+-- Indexes for table `playlist`
 --
 ALTER TABLE `playlist`
-  ADD PRIMARY KEY (`pid`);
+  ADD PRIMARY KEY (`pid`),
+  ADD KEY `uid` (`uid`);
 
 --
--- Chỉ mục cho bảng `podcasts`
+-- Indexes for table `podcasts`
 --
 ALTER TABLE `podcasts`
   ADD PRIMARY KEY (`poid`),
   ADD KEY `aid` (`aid`);
 
 --
--- Chỉ mục cho bảng `songs`
+-- Indexes for table `songs`
 --
 ALTER TABLE `songs`
   ADD PRIMARY KEY (`sid`),
   ADD KEY `aid` (`aid`);
 
 --
--- Chỉ mục cho bảng `songs_playlist`
+-- Indexes for table `songs_playlist`
 --
 ALTER TABLE `songs_playlist`
   ADD PRIMARY KEY (`id`),
@@ -246,105 +262,104 @@ ALTER TABLE `songs_playlist`
   ADD KEY `sid` (`sid`);
 
 --
--- Chỉ mục cho bảng `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`uid`),
-  ADD KEY `pid` (`pid`);
+  ADD PRIMARY KEY (`uid`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `albums`
+-- AUTO_INCREMENT for table `albums`
 --
 ALTER TABLE `albums`
   MODIFY `alid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `albums_songs`
+-- AUTO_INCREMENT for table `albums_songs`
 --
 ALTER TABLE `albums_songs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT cho bảng `artists`
+-- AUTO_INCREMENT for table `artists`
 --
 ALTER TABLE `artists`
   MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `playlist`
+-- AUTO_INCREMENT for table `playlist`
 --
 ALTER TABLE `playlist`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT cho bảng `podcasts`
+-- AUTO_INCREMENT for table `podcasts`
 --
 ALTER TABLE `podcasts`
   MODIFY `poid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `songs`
+-- AUTO_INCREMENT for table `songs`
 --
 ALTER TABLE `songs`
   MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT cho bảng `songs_playlist`
+-- AUTO_INCREMENT for table `songs_playlist`
 --
 ALTER TABLE `songs_playlist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `albums`
+-- Constraints for table `albums`
 --
 ALTER TABLE `albums`
   ADD CONSTRAINT `albums_ibfk_1` FOREIGN KEY (`aid`) REFERENCES `artists` (`aid`);
 
 --
--- Các ràng buộc cho bảng `albums_songs`
+-- Constraints for table `albums_songs`
 --
 ALTER TABLE `albums_songs`
   ADD CONSTRAINT `albums_songs_ibfk_2` FOREIGN KEY (`sid`) REFERENCES `songs` (`sid`),
   ADD CONSTRAINT `albums_songs_ibfk_3` FOREIGN KEY (`alid`) REFERENCES `albums` (`alid`);
 
 --
--- Các ràng buộc cho bảng `podcasts`
+-- Constraints for table `playlist`
+--
+ALTER TABLE `playlist`
+  ADD CONSTRAINT `playlist_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`);
+
+--
+-- Constraints for table `podcasts`
 --
 ALTER TABLE `podcasts`
   ADD CONSTRAINT `podcasts_ibfk_1` FOREIGN KEY (`aid`) REFERENCES `artists` (`aid`);
 
 --
--- Các ràng buộc cho bảng `songs`
+-- Constraints for table `songs`
 --
 ALTER TABLE `songs`
   ADD CONSTRAINT `songs_ibfk_1` FOREIGN KEY (`aid`) REFERENCES `artists` (`aid`);
 
 --
--- Các ràng buộc cho bảng `songs_playlist`
+-- Constraints for table `songs_playlist`
 --
 ALTER TABLE `songs_playlist`
   ADD CONSTRAINT `songs_playlist_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `playlist` (`pid`),
   ADD CONSTRAINT `songs_playlist_ibfk_2` FOREIGN KEY (`sid`) REFERENCES `songs` (`sid`);
-
---
--- Các ràng buộc cho bảng `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `playlist` (`pid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
