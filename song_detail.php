@@ -75,6 +75,8 @@
                 listItem.appendChild(link);
                 songDetail.appendChild(listItem);
 
+                
+
                 // Thêm bài hát vào mảng songs
                 songs.push({
                     title: '<?php echo $title; ?>',

@@ -6,7 +6,7 @@ if (!isset($_SESSION["users_error"])){
     $_SESSION["users_error"]="";
 }
 
-$query = "SELECT * FROM users";
+$query = "SELECT * FROM user";
 $result = $conn->query($query);
 ?>
 
@@ -48,15 +48,15 @@ $result = $conn->query($query);
                 echo "<tr>";
                 echo "<td>{$row['uid']}</td>";
                 echo "<td>{$row['uemail']}</td>";
-                echo "<td>{$row['username']}</td>";
-                echo "<td>{$row['password']}</td>";
+                echo "<td>{$row['uname']}</td>";
+                echo "<td>{$row['upassword']}</td>";
 
                 $statusDisplay = ($row['ustatus'] == 0) ? "Khóa" : "Hoạt động";
                 echo "<td>{$statusDisplay}</td>";
                 // echo "<td><a href='Account_edit.php?cid={$row['cid']}'>Chỉnh sửa</a></td>";
                 
                 $lockDisplay = ($row['ustatus'] == 0) ? "Mở khóa" : "Khóa";
-                echo '<td><button type="button" class="btn btn-warning"><a class="button-lock" onclick="return confirm(\'Bạn có chắc muốn khóa/mở khóa tài khoản của '. $row["username"] .' không?\')" href="Account_lock.php?uid='. $row["uid"] .'">'.$lockDisplay.'</a></button></td>';
+                echo '<td><button type="button" class="btn btn-warning"><a class="button-lock" onclick="return confirm(\'Bạn có chắc muốn khóa/mở khóa tài khoản của '. $row["uname"] .' không?\')" href="Account_lock.php?uid='. $row["uid"] .'">'.$lockDisplay.'</a></button></td>';
 
                 echo "</tr>";
             }

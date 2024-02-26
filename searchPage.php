@@ -30,7 +30,7 @@ function search(query) {
         return;
     }
     
-    // Gửi request AJAX đến file PHP với giá trị của ô tìm kiếm
+   
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {

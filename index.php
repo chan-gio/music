@@ -42,9 +42,9 @@
             case 'album_detail':
                 require("album_detail.php");
                 break;
-            case 'podcast_detail':
-                require("podcast_detail.php");
-                break;
+            // case 'podcast_detail':
+            //     require("podcast_detail.php");
+            //     break;
             case 'artist_detail':
                 require("artist_detail.php");
                 break;
