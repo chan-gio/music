@@ -11,7 +11,10 @@ if (!isset($_SESSION["song_add_error"])){
     $_SESSION["song_add_error"]="";
 }
 
-$query = "SELECT * FROM songs where sstatus=1";
+$query = "SELECT songs.*, artists.aname
+FROM songs
+JOIN artists ON songs.aid = artists.aid
+WHERE songs.sstatus = 1;";
 $result = $conn->query($query);
 ?>
 
@@ -54,12 +57,12 @@ $result = $conn->query($query);
             echo "<tr>";
             echo "<td>{$row['sid']}</td>";
             echo "<td>{$row['sname']}</td>";
-            echo "<td>{$row['sartist']}</td>";
+            echo "<td>{$row['aname']}</td>";
             echo '  <td>
-                        <img src="../images/' . $row['simg'] .'" alt="Song Image" style="width: 100px; height: auto;">
+                        <img src="../images/' . $row['simage'] .'" alt="Song Image" style="width: 100px; height: auto;">
                         <br>
                         <audio controls>
-                        <source src="../songs/'. $row['ssrc'] .'" type="audio/mpeg">
+                        <source src="../songs/'. $row['slink'] .'" type="audio/mpeg">
                         </audio>
                     </td>';
 

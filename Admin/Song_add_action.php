@@ -18,8 +18,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		header("Location:admin.php?manage=Song_add");
         exit();
     }
+
+    //Check tên ca sĩ
+    $check = "Select * from artists where aname = '" .$sartist. "' ";
+    $result=$conn->query($check) or die($conn->error);
+    if($result->num_rows==0){
+        $_SESSION["song_add_error"]="Ca sĩ không tồn tại. Lưu ý: Phải nhập tên ca sĩ một cách chính xác!";
+        header("Location:admin.php?manage=Song_add");
+        exit();
+    }
+    else{
+        $artist = $result->fetch_assoc();
+        $aid = $artist["aid"];
+    }
     
-    if ($_FILES['txtsimage']['size'] > 0 && $_FILES['txtssrc'] > 0) {
+    if ($_FILES['txtsimage']['size'] > 0 && $_FILES['txtssrc']['size'] > 0) {
         $image_upload_dir = "../images/"; // Thư mục lưu trữ ảnh
         $file_extension = pathinfo($_FILES["txtsimage"]["name"], PATHINFO_EXTENSION);
         $new_image_name = uniqid() . '.' . $file_extension; // Tạo tên mới ngẫu nhiên cho tệp tin ảnh
@@ -51,14 +64,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         //Thực hiện thêm vào database
-        $sqlinsert = "INSERT INTO songs (sname, sartist, simg, ssrc, sstatus) VALUES ('$sname', '$sartist', '$new_image_name', '$new_audio_name', $sstatus)";
+        $sqlinsert = "INSERT INTO songs (sname, simage, slink, aid, sstatus) VALUES ('$sname', '$new_image_name', '$new_audio_name', $aid, $sstatus)";
         if ($conn->query($sqlinsert) === TRUE) {
             $_SESSION["song_add_error"] = "Thêm mới bài hát thành công!";
             header("Location:admin.php?manage=songs");
             exit();
         } else {
             $_SESSION["song_add_error"] = "Lỗi khi thêm bài hát: " . $conn->error;
-            header:("Location:admin.php?manage=Song_add");
+            header("Location:admin.php?manage=Song_add");
             exit();
         }
        
