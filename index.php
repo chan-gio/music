@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="style.css">
 <head>
     <title>Phát nhạc</title>
     
@@ -63,15 +64,17 @@
 
    
 </div>
-<div class ="musicBar" style="display: flex;">
+<div class ="musicBar" style="display: flex; flex-direction: row;justify-content: space-between;align-items: center;padding: 16px;gap: 160px;width: 1341px;height: 104px;background: #4285F4;flex: none;order: 1;align-self: stretch;flex-grow: 0;">
     <div id="playerBar">
         <span id="currentSongTitle">Chưa có bài hát được chọn</span>
         <br>
         <span id="currentSongAuthor">Tác giả: Unknown</span>
         <br>
-        <img id="currentSongImage" src="" alt   ="Hình ảnh bài hát">
+        <img id="currentSongImage" src="" alt   ="Hình ảnh bài hát" style="width:7%; height:auto;position: absolute;right: 1250px;top: 878px;bottom: 0%;">
          <!-- Thêm phần tử hiển thị thời gian -->
-         <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
+        <div class="musicprogress" style="">
+            <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
+        </div>
     </div>
     <!-- Thêm thanh trạng thái thời gian vào đây -->
     <input type="range" id="progressBar" min="0" value="0" step="1">
