@@ -34,8 +34,8 @@
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     $title = $row["sname"];
-                    $url = "songs/".$row["slink"];
-                    $image = "images/".$row["simage"];
+                    $url = "../songs/".$row["slink"];
+                    $image = "../images/".$row["simage"];
                     $aname = isset($row["aname"]) ? $row["aname"] : "Unknown";
             ?>
                     // Tạo một hàm xử lý sự kiện click cho mỗi liên kết đến bài hát

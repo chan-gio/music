@@ -57,7 +57,7 @@ function search(query) {
                         case 'song':
                             document.getElementById("songResults").style.display = "block";
                             var imageElement = document.createElement("img");
-                            imageElement.src = "images/" + result.image;
+                            imageElement.src = "../images/" + result.image;
                             imageElement.alt = result.name;
                             resultElement.appendChild(imageElement);
 
@@ -76,7 +76,7 @@ function search(query) {
                         case 'album':
                             document.getElementById("albumResults").style.display = "block";
                             var imageElement = document.createElement("img");
-                            imageElement.src = "albums/" + result.image;
+                            imageElement.src = "../albums/" + result.image;
                             imageElement.alt = result.name;
                             resultElement.appendChild(imageElement);
 
@@ -95,7 +95,7 @@ function search(query) {
                         case 'podcast':
                             document.getElementById("podcastResults").style.display = "block";
                             var imageElement = document.createElement("img");
-                            imageElement.src = "podcasts/" + result.image;
+                            imageElement.src = "../podcasts/" + result.image;
                             imageElement.alt = result.name;
                             resultElement.appendChild(imageElement);
 
@@ -114,7 +114,7 @@ function search(query) {
                         case 'artist':
                             document.getElementById("artistResults").style.display = "block";
                             var imageElement = document.createElement("img");
-                            imageElement.src = "artists/" + result.image;
+                            imageElement.src = "../artists/" + result.image;
                             imageElement.alt = result.name;
                             resultElement.appendChild(imageElement);
 

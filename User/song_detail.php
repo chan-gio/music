@@ -28,6 +28,7 @@
 </div>
 
 <script>
+    var songid;
     // Đối tượng Audio để phát nhạc
     var audioPlayer = new Audio();
     var songs = []; // Mảng chứa danh sách bài hát
@@ -63,8 +64,8 @@
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $title = $row["sname"];
-                $url = "songs/" . $row["slink"];
-                $image = "images/" . $row["simage"];
+                $url = "../songs/" . $row["slink"];
+                $image = "../images/" . $row["simage"];
                 $aname = isset($row["aname"]) ? $row["aname"] : "Unknown";
         ?>
                 // Tạo một hàm xử lý sự kiện click cho mỗi liên kết đến bài hát
@@ -132,9 +133,14 @@
                 // Tạo lựa chọn "thêm vào danh sách phát"
                 var addToPlaylistOption = document.createElement('p');
                 addToPlaylistOption.innerText = 'Add to playlist';
-                addToPlaylistOption.addEventListener('click', function() {
+                
+                
+                //Bắt sự kiện click thêm vào danh sách phát
+                optionsDiv.addEventListener('click', function() {
                     // Ở đây bạn có thể thực hiện xử lý để thêm vào danh sách phát
-                    console.log("Thêm vào danh sách phát");
+                    document.getElementById('id02').style.display='block'
+                    songid = <?php echo $row['sid']; ?>;
+                    console.log(songid);
                 });
 
                 optionsDiv.appendChild(addToPlaylistOption);

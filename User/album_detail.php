@@ -18,7 +18,7 @@ if (!empty($songsArray)) {
     
 ?>
     <h2 id="albumName"><?php echo $alname; ?></h2>
-    <img src="<?php echo "albums/" . $alimage; ?>" alt="">
+    <img src="<?php echo "../albums/" . $alimage; ?>" alt="">
 <?php
 } else {
     echo "console.log('0 results');";
@@ -59,8 +59,8 @@ if (!empty($songsArray)) {
         // Lặp qua mảng songsArray để tạo các phần tử HTML
         foreach($songsArray as $song) {
             $title = $song["sname"];
-            $url = "songs/".$song["slink"];
-            $image = "images/".$song["simage"];
+            $url = "../songs/".$song["slink"];
+            $image = "../images/".$song["simage"];
             $aname = isset($song["aname"]) ? $song["aname"] : "Unknown";
         ?>
         // Tạo một hàm xử lý sự kiện click cho mỗi liên kết đến bài hát
