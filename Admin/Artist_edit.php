@@ -22,11 +22,12 @@ if (!isset($_SESSION["artist_edit_error"])) {
     $_SESSION["artist_edit_error"] = "";
 }
 
+include("connect.php");
 $aid = $_GET["aid"];
 
 $sql = "SELECT *
 FROM artists
-WHERE aid=" . $aid;
+WHERE aid = " . $aid;
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
