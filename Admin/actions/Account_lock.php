@@ -13,5 +13,5 @@
 	$conn->query($sql) or die($conn->error);
 	$conn->close();
 	$_SESSION["users_error"]="Khóa/mở khóa thành công!";
-	header("Location:admin.php?manage=users");
+	header("Location:../admin.php?manage=users");
 ?>

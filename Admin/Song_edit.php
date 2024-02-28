@@ -28,7 +28,7 @@ $row = $result->fetch_assoc();
 
 <body style="margin-left:100px;background-color: #f1efef">
     <h2 style="margin-top:10px">Chỉnh sửa bài hát</h2>
-    <form class="row g-3" action="Song_edit_action.php?sid=<?php echo $sid ?>" method="POST" enctype="multipart/form-data" style="background-color:white;border:1px solid #ccc;margin-top:30px;padding:20px;border-radius:10px;">
+    <form class="row g-3" action="./actions/Song_edit_action.php?sid=<?php echo $sid ?>" method="POST" enctype="multipart/form-data" style="background-color:white;border:1px solid #ccc;margin-top:30px;padding:20px;border-radius:10px;">
         <font color=red><?php echo $_SESSION["song_edit_error"]; ?></font><br>
         
         <div class="col-md-12">
@@ -70,7 +70,7 @@ $row = $result->fetch_assoc();
 
         <div class="col-12">
             <button class="btn btn-primary" type="reset">Reset</button>
-            <button class="btn btn-primary" type="submit">Sửa bài hát</button>
+            <button class="btn btn-primary" type="submit">Lưu</button>
         </div>
     </form>
 

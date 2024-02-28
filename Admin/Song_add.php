@@ -25,7 +25,7 @@ if (!isset($_SESSION["song_add_error"])) {
 
 <body style="margin-left:100px;background-color: #f1efef">
     <h2 style="margin-top:10px">Thêm bài hát mới</h2>
-    <form class="row g-3" action="Song_add_action.php" method="POST" enctype="multipart/form-data" style="background-color:white;border:1px solid #ccc;margin-top:30px;padding:20px;border-radius:10px;">
+    <form class="row g-3" action="./actions/Song_add_action.php" method="POST" enctype="multipart/form-data" style="background-color:white;border:1px solid #ccc;margin-top:30px;padding:20px;border-radius:10px;">
         <div class="col-md-12">
             <label for="pname" class="form-label">Tên bài hát:</label>
             <input type="text" class="form-control" id="sname" name="txtsname" placeholder="" required>
@@ -72,7 +72,7 @@ if (!isset($_SESSION["song_add_error"])) {
         if (input.length > 0) {
             // Gửi yêu cầu AJAX
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'suggest_artists.php?query=' + input, true);
+            xhr.open('GET', './actions/suggest_artists.php?query=' + input, true);
 
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {

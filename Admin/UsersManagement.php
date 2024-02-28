@@ -18,6 +18,8 @@ $result = $conn->query($query);
     <title>Quản lý người dùng</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/Management.css">
+    
     <style>
         a{
             text-decoration: none;
@@ -56,7 +58,7 @@ $result = $conn->query($query);
                 // echo "<td><a href='Account_edit.php?cid={$row['cid']}'>Chỉnh sửa</a></td>";
                 
                 $lockDisplay = ($row['ustatus'] == 0) ? "Mở khóa" : "Khóa";
-                echo '<td><button type="button" class="btn btn-warning"><a class="button-lock" onclick="return confirm(\'Bạn có chắc muốn khóa/mở khóa tài khoản của '. $row["uname"] .' không?\')" href="Account_lock.php?uid='. $row["uid"] .'">'.$lockDisplay.'</a></button></td>';
+                echo '<td><button type="button" class="btn btn-warning"><a class="button-lock" onclick="return confirm(\'Bạn có chắc muốn khóa/mở khóa tài khoản của '. $row["uname"] .' không?\')" href="./actions/Account_lock.php?uid='. $row["uid"] .'">'.$lockDisplay.'</a></button></td>';
 
                 echo "</tr>";
             }

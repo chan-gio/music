@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result=$conn->query($check) or die($conn->error);
 	if ($result->num_rows>0){
 		$_SESSION["song_add_error"]="Bài hát: $sname đã tồn tại!";
-		header("Location:admin.php?manage=Song_add");
+		header("Location:../admin.php?manage=Song_add");
         exit();
     }
 
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result=$conn->query($check) or die($conn->error);
     if($result->num_rows==0){
         $_SESSION["song_add_error"]="Ca sĩ không tồn tại. Lưu ý: Phải nhập tên ca sĩ một cách chính xác!";
-        header("Location:admin.php?manage=Song_add");
+        header("Location:../admin.php?manage=Song_add");
         exit();
     }
     else{
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            
         } else {
                 $_SESSION["song_add_error"] = "Đã có lỗi xảy ra khi tải file bài hát lên. Vui lòng thử lại!";
-                header("Location: admin.php?manage=Song_add");
+                header("Location:../admin.php?manage=Song_add");
                 exit();
         }
 
@@ -67,22 +67,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sqlinsert = "INSERT INTO songs (sname, simage, slink, aid, sstatus) VALUES ('$sname', '$new_image_name', '$new_audio_name', $aid, $sstatus)";
         if ($conn->query($sqlinsert) === TRUE) {
             $_SESSION["song_add_error"] = "Thêm mới bài hát thành công!";
-            header("Location:admin.php?manage=songs");
+            header("Location:../admin.php?manage=songs");
             exit();
         } else {
             $_SESSION["song_add_error"] = "Lỗi khi thêm bài hát: " . $conn->error;
-            header("Location:admin.php?manage=Song_add");
+            header("Location:../admin.php?manage=Song_add");
             exit();
         }
        
     } else {
         $_SESSION["song_error"] = "Bạn cần nhập đủ dữ liệu!";
-        header("Location:admin.php?manage=songs");
+        header("Location:../admin.php?manage=songs");
         exit();
     }
 } else {
     // Nếu không có dữ liệu được gửi từ form POST, chuyển hướng trở lại trang Product_add.php
-    header("Location: admin.php?manage=Song_add");
+    header("Location:../admin.php?manage=Song_add");
     exit();
 }
 ?>

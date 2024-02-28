@@ -28,12 +28,12 @@ $result = $conn->query($query);
     <title>Thùng rác</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/Product-Management.css">
+    <link rel="stylesheet" href="./css/Management.css">
    
 </head>
 
 <body style="margin-left:100px;background-color: #f1efef">
-    <h2 style="margin-top:10px">Các bài hát đã xóa</h2>
+    <h2 style="margin-top:10px">Bài hát đã xóa</h2>
     <font color=red><?php echo $_SESSION["song_edit_error"]; ?></font><br>
     <font color=red><?php echo $_SESSION["song_add_error"]; ?></font><br>
     <button type="button" style="background-color: red;" class="btn btn-primary"><a class="button-Add" href="admin.php?manage=songs">Trở về</a></button>
@@ -46,6 +46,7 @@ $result = $conn->query($query);
                 <th scope="col">Ca sĩ</th>
                 <th scope="col">Nội dung</th>
                 <th scope="col">Tình trạng</th>
+                <th scope="col">Chỉnh sửa</th>
                 <th scope="col">Khôi phục</th>
             </tr>
         </thead>
@@ -66,7 +67,8 @@ $result = $conn->query($query);
                     </td>';
 
             echo "<td>Đã xóa</td>";
-            echo '<td><button type="button" class="btn btn-warning"><a class="button-edit" onclick="return confirm(\'Bạn có chắc muốn khôi phục bài hát: '. $row["sname"] .' không?\')" href="Song_trashcan_action.php?sid=' . $row["sid"] . '">Khôi phục</a></button></td>';
+            echo "<td><button type='button' class='btn btn-warning'><a class='button-edit' href='admin.php?manage=Song_edit&sid={$row['sid']}'>Chỉnh sửa</a></button></td>";
+            echo '<td><button type="button" class="btn btn-warning"><a class="button-edit" onclick="return confirm(\'Bạn có chắc muốn khôi phục bài hát: '. $row["sname"] .' không?\')" href="./actions/Song_trashcan_action.php?sid=' . $row["sid"] . '">Khôi phục</a></button></td>';
             echo "</tr>";
         }
         ?>

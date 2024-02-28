@@ -49,7 +49,18 @@ include("connect.php");
           else if($_GET['manage']=='Song_edit'){
             require("Song_edit.php");
           }
-          
+          else if($_GET['manage']=='artists'){
+            require("ArtistsManagement.php");
+          }
+          else if($_GET['manage']=='Artist_add'){
+            require("Artist_add.php");
+          }
+          else if($_GET['manage']=='Artist_trashcan'){
+            require("Artist_trashcan.php");
+          }
+          else if($_GET['manage']=='Artist_edit'){
+            require("Artist_edit.php");
+          }
 
        
         /* footer content */

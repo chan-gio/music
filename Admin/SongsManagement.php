@@ -27,7 +27,7 @@ $result = $conn->query($query);
     <title>Quản lý sản phẩm</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/Product-Management.css">
+    <link rel="stylesheet" href="./css/Management.css">
    
 </head>
 
@@ -68,7 +68,7 @@ $result = $conn->query($query);
 
             echo "<td>Khả dụng</td>";
             echo "<td><button type='button' class='btn btn-warning'><a class='button-edit' href='admin.php?manage=Song_edit&sid={$row['sid']}'>Chỉnh sửa</a></button></td>";
-            echo '<td><button type="button" class="btn btn-danger"><a class="button-delete" onclick="return confirm(\'Bạn có chắc muốn xóa bài hát: '. $row["sname"] .' không?\')" href="Song_delete.php?sid=' . $row["sid"] . '">Xóa</a></button></td>';
+            echo '<td><button type="button" class="btn btn-danger"><a class="button-delete" onclick="return confirm(\'Bạn có chắc muốn xóa bài hát: '. $row["sname"] .' không?\')" href="./actions/Song_delete.php?sid=' . $row["sid"] . '">Xóa</a></button></td>';
             echo "</tr>";
         }
         ?>

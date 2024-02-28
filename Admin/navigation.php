@@ -25,6 +25,15 @@
         </li>
         
         <li>
+            <a href="admin.php?manage=artists">
+                <i class="fa-solid fa-user fa"></i>
+                <span class="nav-text">
+                    Quản lý ca sĩ
+                </span>
+            </a>
+        </li>
+
+        <li>
             <a href="admin.php?manage=users">
                 <i class="fa-solid fa-users fa fa-2x"></i>
                 <span class="nav-text">
@@ -32,6 +41,8 @@
                 </span>
             </a>
         </li>
+
+        
     </ul>
 
     <ul class="logout">
