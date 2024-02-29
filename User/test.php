@@ -1,64 +1,21 @@
-<!DOCTYPE html>
-<html>
+<script>
+    function checkSongInPlaylist(songid, playlistId) {
+    var result = false;
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style>
-        .dropdown-submenu {
-            position: relative;
+    // Sử dụng XMLHttpRequest hoặc Fetch API để gửi yêu cầu AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', './actions/check_duplicate.php?songid=' + songid + '&playlistid=' + playlistId, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            result = xhr.responseText.trim() === 'true';
+            console.log(result); // Log giá trị sau khi nhận phản hồi
         }
-
-        .dropdown-submenu .dropdown-menu {
-            top: 0;
-            left: 100%;
-            margin-top: -1px;
-        }
-    </style>
-</head>
-
+    };
+    xhr.send();
+    return result;
+}
+    checkSongInPlaylist(4,4);
+</script>
 <body>
-
-    <div class="container">
-        <h2>Multi-Level Dropdowns</h2>
-        <p>In this example, we have created a .dropdown-submenu class for multi-level dropdowns (see style section above).</p>
-        <p>Note that we have added jQuery to open the multi-level dropdown on click (see script section below).</p>
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Tutorials
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a tabindex="-1" href="#">HTML</a></li>
-                <li><a tabindex="-1" href="#">CSS</a></li>
-                <li class="dropdown-submenu">
-                    <a class="test" tabindex="-1" href="#">New dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
-                        <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
-                        <li class="dropdown-submenu">
-                            <a class="test" href="#">Another dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">3rd level dropdown</a></li>
-                                <li><a href="#">3rd level dropdown</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <script>
-        $(document).ready(function() {
-            $('.dropdown-submenu a.test').on("click", function(e) {
-                $(this).next('ul').toggle();
-                e.stopPropagation();
-                e.preventDefault();
-            });
-        });
-    </script>
-
+    
 </body>
-
-</html>

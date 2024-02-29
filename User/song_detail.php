@@ -10,12 +10,40 @@
     <!-- Modal thêm vào danh sách phát(ban đầu sẽ ẩn) -->
     <div id="id02" class="modal">
 
-        <form class="modal-content animate" action="Password_edit_action.php?cid=<?php echo $row['cid'] ?>" method="post">
+        <form id="playlistForm" class="modal-content animate" action="./actions/add_to_playlist.php" method="post">
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
             </div>
 
-            
+            <?php
+            // Truy vấn để lấy danh sách các playlist
+            $sql = "SELECT * FROM playlist";
+            $result = $conn->query($sql);
+            ?>
+
+            <!-- Ô checkbox để chọn playlist -->
+            <div class="form-group">
+                <label>Chọn Playlist:</label>
+                <?php
+                // Kiểm tra xem có dữ liệu trả về từ truy vấn hay không
+                if ($result->num_rows > 0) {
+                    while ($playlistRow = $result->fetch_assoc()) {
+                        $pid = $playlistRow['pid'];
+                        $pname = $playlistRow['pname'];
+                ?>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="playlists[]" id="playlist_<?php echo $pid; ?>" value="<?php echo $pid; ?>">
+                            <label class="form-check-label" for="playlist_<?php echo $pid; ?>"><?php echo $pname; ?></label>
+                        </div>
+                <?php
+                    }
+                } else {
+                    echo 'Không có playlist nào khả dụng.';
+                }
+                ?>
+            </div>
+
+            <!-- Các nút điều khiển và ô nhập liệu khác -->
             <div class="group-button row">
                 <div class="col-md-2 col-sm-0"></div>
                 <button type="button" class="btn btn-outline-danger col-md-3" onclick="document.getElementById('id02').style.display='none'">Huỷ</button>
@@ -24,10 +52,13 @@
                 <div class="col-md-2 col-sm-0"></div>
             </div>
         </form>
+
+
     </div>
 </div>
 
 <script>
+    var isUserConfirmed = false; // Biến để kiểm soát xác nhận từ người dùng
     var songid;
     // Đối tượng Audio để phát nhạc
     var audioPlayer = new Audio();
@@ -37,7 +68,7 @@
     function playCurrentSong() {
         var currentSong = songs[currentSongIndex];
         audioPlayer.src = currentSong.url;
-        a
+
         audioPlayer.play();
 
         var currentSongTitle = document.getElementById('currentSongTitle');
@@ -133,12 +164,12 @@
                 // Tạo lựa chọn "thêm vào danh sách phát"
                 var addToPlaylistOption = document.createElement('p');
                 addToPlaylistOption.innerText = 'Add to playlist';
-                
-                
+
+
                 //Bắt sự kiện click thêm vào danh sách phát
                 optionsDiv.addEventListener('click', function() {
                     // Ở đây bạn có thể thực hiện xử lý để thêm vào danh sách phát
-                    document.getElementById('id02').style.display='block'
+                    document.getElementById('id02').style.display = 'block'
                     songid = <?php echo $row['sid']; ?>;
                     console.log(songid);
                 });
@@ -161,6 +192,76 @@
         ?>
     });
 </script>
+
+
+
+
+
+
+<!-- Check thêm vào ds phát -->
+<script>
+    // Hàm kiểm tra trùng lặp bằng AJAX
+    async function checkSongInPlaylist(songid, playlistId) {
+        try {
+            const response = await fetch('./actions/check_duplicate.php?songid=' + songid + '&playlistid=' + playlistId);
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.text();
+            const result = data.trim() === 'true';
+            return result;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async function validateForm(event) {
+
+    }
+
+    //Hàm xử lý nếu người dùng ấn cancel thì không gửi form đi nữa(không thêm vào ds phát nữa)
+    document.getElementById('playlistForm').addEventListener('submit', function(event) {
+        // Lấy danh sách các checkbox đã chọn
+        var selectedPlaylists = document.querySelectorAll('input[name="playlists[]"]:checked');
+
+        // Biến flag để kiểm tra xem có cần hiển thị cảnh báo hay không
+        var showWarning = false;
+
+        // Lặp qua từng checkbox đã chọn
+        for (var i = 0; i < selectedPlaylists.length; i++) {
+            // Lấy giá trị pid của playlist được chọn
+            var playlistId = selectedPlaylists[i].value;
+
+            // Thực hiện kiểm tra trùng lặp trong database (sử dụng Ajax để gửi yêu cầu kiểm tra)
+            var isSongInPlaylist = checkSongInPlaylist(songid, playlistId);
+
+            // Nếu bài hát đã có trong playlist, ghi nhớ để hiển thị cảnh báo
+            if (isSongInPlaylist) {
+                showWarning = true;
+            }
+        }
+
+        // Nếu cần hiển thị cảnh báo
+        if (showWarning) {
+            // Hiển thị cảnh báo và yêu cầu xác nhận
+            var userConfirmation = confirm("Bài hát đã có trong danh sách phát, Bạn có muốn thêm lại không?");
+
+            // Kiểm tra giá trị trả về từ hộp thoại
+            if (userConfirmation) {
+                // Người dùng đã chọn "OK" thì mới submit form
+                var playlistForm = document.getElementById("playlistForm");
+                playlistForm.submit();
+            } else {
+                event.preventDefault();
+                document.getElementById('id02').style.display = 'none';
+            }
+        }
+
+    });
+</script>
+
 <style>
     @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css);
 

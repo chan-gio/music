@@ -291,7 +291,7 @@
                 }
                 else{
                     playCurrentSong();
-                    audioPlayer.pause()
+                    audioPlayer.pause();
                 }
                 // Thiết lập thời gian của bài hát
                 audioPlayer.currentTime = currentTime;
