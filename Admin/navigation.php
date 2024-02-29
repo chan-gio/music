@@ -42,6 +42,15 @@
             </a>
         </li>
 
+        <li>
+            <a href="admin.php?manage=Album">
+            <i class="fa-solid fa-compact-disc fa "></i>
+                <span class="nav-text">
+                    Quản lý album
+                </span>
+            </a>
+        </li>
+
         
     </ul>
 

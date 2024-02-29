@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $aid = $artist["aid"];
     }
     
-    if ($_FILES['txtsimage']['size'] > 0 && $_FILES['txtssrc']['size'] > 0) {
-        $image_upload_dir = "../images/"; // Thư mục lưu trữ ảnh
+    if ($_FILES['txtsimage']['size'] > 0) {
+        $image_upload_dir = "../../images/"; // Thư mục lưu trữ ảnh
         $file_extension = pathinfo($_FILES["txtsimage"]["name"], PATHINFO_EXTENSION);
         $new_image_name = uniqid() . '.' . $file_extension; // Tạo tên mới ngẫu nhiên cho tệp tin ảnh
 
@@ -43,12 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (move_uploaded_file($_FILES["txtsimage"]["tmp_name"], $target_file)) {
             
         } else {
-            $_SESSION["song_add_error"] = "Đã có lỗi xảy ra khi tải ảnh lên. Vui lòng thử lại!";
-            header("Location: admin.php?manage=Song_add");
+            $_SESSION["song_add_error"] = "".$_FILES["txtsimage"]["error"];
+            header("Location:../admin.php?manage=Song_add");
             exit();
         }
 
-        $audio_upload_dir = "../songs/"; // Thư mục lưu trữ nhạc
+        $audio_upload_dir = "../../songs/"; // Thư mục lưu trữ nhạc
         $file_extension = pathinfo($_FILES["txtssrc"]["name"], PATHINFO_EXTENSION);
         $new_audio_name = uniqid() . '.' . $file_extension; // Tạo tên mới ngẫu nhiên cho tệp tin nhạc
 

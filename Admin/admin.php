@@ -61,6 +61,12 @@ include("connect.php");
           else if($_GET['manage']=='Artist_edit'){
             require("Artist_edit.php");
           }
+          else if($_GET['manage']=='Album'){
+            require('AlbumManagement.php');
+          }
+          else if($_GET['manage']=='Album_trashcan'){
+            require("Album_trashcan.php");
+          }
 
        
         /* footer content */

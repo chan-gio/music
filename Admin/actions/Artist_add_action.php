@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     
     if ($_FILES['txtaimage']['size'] > 0) {
-        $image_upload_dir = "../artists/"; // Thư mục lưu trữ ảnh
+        $image_upload_dir = "../../artists/"; // Thư mục lưu trữ ảnh
         $file_extension = pathinfo($_FILES["txtaimage"]["name"], PATHINFO_EXTENSION);
         $new_image_name = uniqid() . '.' . $file_extension; // Tạo tên mới ngẫu nhiên cho tệp tin ảnh
 
