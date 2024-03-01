@@ -86,9 +86,18 @@
         <?php
         $id = $_GET['id'];
         // Truy vấn cơ sở dữ liệu để lấy các bài hát
-        $sql = "SELECT a.*, b.aname FROM songs a
-            JOIN artists b ON b.aid = a.aid
-            Where a.sid = $id";
+        $sql = "SELECT
+        songs.*,
+        GROUP_CONCAT(artists.aname SEPARATOR ', ') AS artist_names
+        FROM
+        songs
+        LEFT JOIN songs_artists ON songs.sid = songs_artists.sid
+        LEFT JOIN artists ON songs_artists.aid = artists.aid
+        WHERE
+        songs.sstatus = 1
+        GROUP BY
+        songs.sid, songs.sname;
+        ";
         $result = $conn->query($sql);
 
         // Hiển thị các liên kết đến bài hát
@@ -97,7 +106,7 @@
                 $title = $row["sname"];
                 $url = "../songs/" . $row["slink"];
                 $image = "../images/" . $row["simage"];
-                $aname = isset($row["aname"]) ? $row["aname"] : "Unknown";
+                $aname = explode(', ', $row['artist_names']);
         ?>
                 // Tạo một hàm xử lý sự kiện click cho mỗi liên kết đến bài hát
                 function createClickHandler(index) {
@@ -181,7 +190,7 @@
                 songs.push({
                     title: '<?php echo $title; ?>',
                     url: '<?php echo $url; ?>',
-                    author: '<?php echo $aname; ?>',
+                    author: '<?php echo implode(', ', $aname); ?>',
                     image: '<?php echo $image; ?>'
                 });
         <?php

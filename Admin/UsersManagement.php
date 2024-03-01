@@ -41,7 +41,7 @@ $result = $conn->query($query);
                 <th scope="col">Tên người dùng</th>
                 <th scope="col">Mật khẩu</th>
                 <th scope="col">Tình trạng</th>
-                <th scope="col">Chỉnh sửa</th>
+                <th scope="col">Khóa</th>
             </tr>
         </thead>
         <tbody>

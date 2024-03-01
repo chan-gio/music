@@ -31,9 +31,30 @@ if (!isset($_SESSION["song_add_error"])) {
             <input type="text" class="form-control" id="sname" name="txtsname" placeholder="" required>
         </div>
         <div class="col-md-12">
-            <label for="pname" class="form-label">Ca sĩ:</label>
-            <input type="text" class="form-control" id="sartist" name="txtsartist" placeholder="" required>
-            <div id="artistSuggestions"></div>
+            <label for="pname" class="form-label">Ca sĩ:</label><br>
+            <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#artistSelectModal'>Thêm ca sĩ</button>
+            <!-- Modal -->
+            <div class="modal fade" id="artistSelectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="margin: 80px 140px;">
+                    <div class="modal-content" style="width: 1360px;">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm ca sĩ</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h3 class="modal-title fs-5" id="exampleModalLabel">Tìm kiếm ca sĩ</h3>
+                            <input type="text" class="form-control" id="sartist" name="txtsartist" placeholder="" required>
+                            <div id="artistSuggestions"></div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-primary">Lưu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div class="col-md-12">
@@ -63,7 +84,10 @@ if (!isset($_SESSION["song_add_error"])) {
         </div>
     </form>
 
+
 </body>
+
+
 
 <script>
     document.getElementById('sartist').addEventListener('input', function() {

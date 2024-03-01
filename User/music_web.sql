@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 26, 2024 at 07:22 PM
+-- Generation Time: Mar 01, 2024 at 12:46 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -59,7 +59,7 @@ CREATE TABLE `albums` (
 --
 
 INSERT INTO `albums` (`alid`, `alname`, `alimage`, `alview`, `aid`, `alstatus`) VALUES
-(4, 'moi', '2.jpg', 0, 3, 1);
+(5, 'aaaaaaaaaaaaaaaaa', 'adf', 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -72,14 +72,6 @@ CREATE TABLE `albums_songs` (
   `alid` int(11) NOT NULL,
   `sid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `albums_songs`
---
-
-INSERT INTO `albums_songs` (`id`, `alid`, `sid`) VALUES
-(8, 4, 7),
-(10, 4, 6);
 
 -- --------------------------------------------------------
 
@@ -100,8 +92,10 @@ CREATE TABLE `artists` (
 --
 
 INSERT INTO `artists` (`aid`, `aname`, `aimage`, `aview`, `astatus`) VALUES
-(3, 'Hoàng Thùy Linh', '2.jpg', 0, 1),
-(4, 'Jack', '3.jpg', 0, 1);
+(3, 'Nguyễn Trần Trung Quân ', '2.jpg', 0, 1),
+(4, 'Jack23', '65df21c9dd0c5.jpg', 0, 1),
+(5, 'hai ba bốn', '65df21cfbd03c.jpg', 123, 1),
+(6, 'abc', '65de92b8a475d.jpg', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -158,7 +152,6 @@ CREATE TABLE `songs` (
   `sname` varchar(255) NOT NULL,
   `simage` varchar(255) NOT NULL,
   `slink` varchar(255) NOT NULL,
-  `aid` int(11) DEFAULT NULL,
   `sview` int(11) NOT NULL DEFAULT 0,
   `sstatus` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -167,10 +160,28 @@ CREATE TABLE `songs` (
 -- Dumping data for table `songs`
 --
 
-INSERT INTO `songs` (`sid`, `sname`, `simage`, `slink`, `aid`, `sview`, `sstatus`) VALUES
-(4, 'Hồng nhan', 'Hong-Nhan-Jack.jpg', 'Hong-Nhan-Jack.mp3', 4, 0, 1),
-(6, 'number 2', 'ChiMuonBenEmLucNay.jpg', 'ChiMuonBenEmLucNay.mp3', 3, 0, 1),
-(7, 'so 3', '3.jpg', '3.mp3', 4, 0, 1);
+INSERT INTO `songs` (`sid`, `sname`, `simage`, `slink`, `sview`, `sstatus`) VALUES
+(10, 'Fukumean', '2.jpg', '2.mp3', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `songs_artists`
+--
+
+CREATE TABLE `songs_artists` (
+  `id` int(11) NOT NULL,
+  `sid` int(11) NOT NULL,
+  `aid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `songs_artists`
+--
+
+INSERT INTO `songs_artists` (`id`, `sid`, `aid`) VALUES
+(2, 10, 4),
+(4, 10, 3);
 
 -- --------------------------------------------------------
 
@@ -215,8 +226,7 @@ INSERT INTO `user` (`uid`, `uemail`, `uname`, `upassword`, `ustatus`) VALUES
 -- Indexes for table `albums`
 --
 ALTER TABLE `albums`
-  ADD PRIMARY KEY (`alid`),
-  ADD KEY `aid` (`aid`);
+  ADD PRIMARY KEY (`alid`);
 
 --
 -- Indexes for table `albums_songs`
@@ -250,8 +260,15 @@ ALTER TABLE `podcasts`
 -- Indexes for table `songs`
 --
 ALTER TABLE `songs`
-  ADD PRIMARY KEY (`sid`),
-  ADD KEY `aid` (`aid`);
+  ADD PRIMARY KEY (`sid`);
+
+--
+-- Indexes for table `songs_artists`
+--
+ALTER TABLE `songs_artists`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `aid` (`aid`),
+  ADD KEY `sid` (`sid`);
 
 --
 -- Indexes for table `songs_playlist`
@@ -275,7 +292,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `albums`
 --
 ALTER TABLE `albums`
-  MODIFY `alid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `alid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `albums_songs`
@@ -287,7 +304,7 @@ ALTER TABLE `albums_songs`
 -- AUTO_INCREMENT for table `artists`
 --
 ALTER TABLE `artists`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `playlist`
@@ -305,13 +322,19 @@ ALTER TABLE `podcasts`
 -- AUTO_INCREMENT for table `songs`
 --
 ALTER TABLE `songs`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `songs_artists`
+--
+ALTER TABLE `songs_artists`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `songs_playlist`
 --
 ALTER TABLE `songs_playlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -322,12 +345,6 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `albums`
---
-ALTER TABLE `albums`
-  ADD CONSTRAINT `albums_ibfk_1` FOREIGN KEY (`aid`) REFERENCES `artists` (`aid`);
 
 --
 -- Constraints for table `albums_songs`
@@ -349,10 +366,11 @@ ALTER TABLE `podcasts`
   ADD CONSTRAINT `podcasts_ibfk_1` FOREIGN KEY (`aid`) REFERENCES `artists` (`aid`);
 
 --
--- Constraints for table `songs`
+-- Constraints for table `songs_artists`
 --
-ALTER TABLE `songs`
-  ADD CONSTRAINT `songs_ibfk_1` FOREIGN KEY (`aid`) REFERENCES `artists` (`aid`);
+ALTER TABLE `songs_artists`
+  ADD CONSTRAINT `songs_artists_ibfk_1` FOREIGN KEY (`aid`) REFERENCES `artists` (`aid`),
+  ADD CONSTRAINT `songs_artists_ibfk_2` FOREIGN KEY (`sid`) REFERENCES `songs` (`sid`);
 
 --
 -- Constraints for table `songs_playlist`

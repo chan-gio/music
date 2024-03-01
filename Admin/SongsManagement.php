@@ -11,10 +11,19 @@ if (!isset($_SESSION["song_add_error"])){
     $_SESSION["song_add_error"]="";
 }
 
-$query = "SELECT songs.*, artists.aname
-FROM songs
-JOIN artists ON songs.aid = artists.aid
-WHERE songs.sstatus = 1;";
+$query = "SELECT
+songs.*,
+GROUP_CONCAT(artists.aname SEPARATOR '\n') AS artist_names
+FROM
+songs
+LEFT JOIN songs_artists ON songs.sid = songs_artists.sid
+LEFT JOIN artists ON songs_artists.aid = artists.aid
+WHERE
+songs.sstatus = 1
+GROUP BY
+songs.sid, songs.sname;
+
+";
 $result = $conn->query($query);
 ?>
 
@@ -45,6 +54,7 @@ $result = $conn->query($query);
                 <th scope="col">Tên bài hát</th>
                 <th scope="col">Ca sĩ</th>
                 <th scope="col">Nội dung</th>
+                <th scope="col">Lượt nghe</th>
                 <th scope="col">Tình trạng</th>
                 <th scope="col">Chỉnh sửa</th>
                 <th scope="col">Xóa</th>
@@ -57,7 +67,8 @@ $result = $conn->query($query);
             echo "<tr>";
             echo "<td>{$row['sid']}</td>";
             echo "<td>{$row['sname']}</td>";
-            echo "<td>{$row['aname']}</td>";
+            // Sử dụng nl2br để chuyển đổi dòng mới thành thẻ <br> echo "<td>{$row['artist_names']}</td>";
+            echo "<td>" . nl2br($row['artist_names']) . "</td>"; 
             echo '  <td>
                         <img src="../images/' . $row['simage'] .'" alt="Song Image" style="width: 100px; height: auto;">
                         <br>
@@ -65,7 +76,7 @@ $result = $conn->query($query);
                         <source src="../songs/'. $row['slink'] .'" type="audio/mpeg">
                         </audio>
                     </td>';
-
+            echo "<td>{$row['sview']}</td>";
             echo "<td>Khả dụng</td>";
             echo "<td><button type='button' class='btn btn-warning'><a class='button-edit' href='admin.php?manage=Song_edit&sid={$row['sid']}'>Chỉnh sửa</a></button></td>";
             echo '<td><button type="button" class="btn btn-danger"><a class="button-delete" onclick="return confirm(\'Bạn có chắc muốn xóa bài hát: '. $row["sname"] .' không?\')" href="./actions/Song_delete.php?sid=' . $row["sid"] . '">Xóa</a></button></td>';
