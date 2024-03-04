@@ -28,5 +28,13 @@
 
 
 </body>
+<style>
+    .login{
+        background-image: url('../images/logo/bglogin.png');    
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+</style>
 
 </html>

@@ -1,7 +1,7 @@
 <div class="homeBar">
     <link rel="stylesheet" type="text/css" href="style.css">
     <?php
-    $imageUrl = "../images/logo/logo.png"; // replace with the actual path or URL of your image
+    $imageUrl = "../images/logo/logo.png"; 
     ?>
 
     <img src="<?php echo $imageUrl; ?>" alt="Your Image">

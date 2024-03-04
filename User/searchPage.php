@@ -147,3 +147,80 @@ function search(query) {
     xhttp.send();
 }
 </script>
+<style>
+    /* Add the following CSS to your style.css file */
+
+/* Search Bar Styles */
+.searchBar {
+    width: 30%;
+    height: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    background-color: #EEEEEE;
+    color: #fff;
+    outline: none;
+    margin-top: 20px;
+}
+
+/* Results Container Styles */
+#songResults,
+#albumResults,
+#podcastResults,
+#artistResults {
+    top: 20px;
+    display: none;
+    color: #fff;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Result List Styles */
+.resultList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Result Item Styles */
+.resultItem {
+    width: 150px;
+    text-align: center;
+}
+
+.resultItem img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.resultItem p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #b3b3b3;
+}
+
+/* Example: Specific styling for song results */
+#songListResults {
+    /* Add specific styles for song results if needed */
+}
+
+/* Example: Specific styling for album results */
+#albumListResults {
+    /* Add specific styles for album results if needed */
+}
+
+/* Example: Specific styling for podcast results */
+#podcastListResults {
+    /* Add specific styles for podcast results if needed */
+}
+
+/* Example: Specific styling for artist results */
+#artistListResults {
+    /* Add specific styles for artist results if needed */
+}
+
+</style>
