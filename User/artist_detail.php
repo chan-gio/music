@@ -2,7 +2,8 @@
 $id = $_GET['id'];
 // Truy vấn cơ sở dữ liệu để lấy các bài hát
 $sql = "SELECT a.*, b.* FROM artists a
-        JOIN songs b ON a.aid = b.aid
+        JOIN songs_artists c ON a.aid = c.aid
+        JOIN songs b ON c.sid = b.sid
         WHERE a.aid = $id";
 $result = $conn->query($sql);
 

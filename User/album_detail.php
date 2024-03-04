@@ -1,11 +1,14 @@
 <?php
 $id = $_GET['id'];
 // Truy vấn cơ sở dữ liệu để lấy các bài hát
-$sql = "SELECT a.*, c.*, d.aname FROM albums a
+$sql = "SELECT a.*, c.*, GROUP_CONCAT(d.aname)
+        FROM albums a
         JOIN albums_songs b ON a.alid = b.alid
         JOIN songs c ON b.sid = c.sid
-        JOIN artists d ON d.aid = c.aid
-        WHERE a.alid = $id";
+        JOIN songs_artists e ON e.sid = c.sid
+        JOIN artists d ON d.aid = e.aid
+        WHERE a.alid = 5
+        GROUP BY c.sid, c.sname;";
 $result = $conn->query($sql);
 
 // Lấy tất cả các bản ghi và lưu trữ chúng trong một mảng
@@ -21,7 +24,7 @@ if (!empty($songsArray)) {
     <img src="<?php echo "../albums/" . $alimage; ?>" alt="">
 <?php
 } else {
-    echo "console.log('0 results');";
+    echo "Album hiện không có bài hát nào";
 }
 ?>
 
