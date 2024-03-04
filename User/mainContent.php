@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <div class ="mainContent">
     <div class ="pMusic">
     <p>Popular music</p>
@@ -10,16 +9,6 @@
                     GROUP BY a.sid, a.sname
                     ORDER BY a.sview DESC
                     LIMIT 0,10;";
-=======
-<div class="mainContent">
-
-    <div class="pMusic">
-        <p>Popular music</p>
-        <?php
-        $sql6 = "SELECT * FROM songs
-                where sstatus=1
-                ORDER BY sview DESC LIMIT 0,10";
->>>>>>> Stashed changes
         $result6 = $conn->query($sql6);
 
         if ($result6->num_rows > 0) {
@@ -68,7 +57,6 @@
                     ORDER BY aview DESC LIMIT 0,10";
              $result1 = $conn->query($sql1);
 
-<<<<<<< Updated upstream
              if ($result1->num_rows > 0) {
                 while($row1 = $result1->fetch_assoc()) {
                     $aname = $row1["aname"];
@@ -82,61 +70,6 @@
         </div>
 
         <!-- <div>
-=======
-        if ($result1->num_rows > 0) {
-            while ($row1 = $result1->fetch_assoc()) {
-                $aname = $row1["aname"];
-                $aid = $row1["aid"];
-                $aimage = "../artists/" . $row1["aimage"];
-                echo "<a href='index.php?sort=artist_detail&id=$aid'><img src='$aimage' alt='$aname'></a>";
-                echo $aname;
-            }
-        }
-        ?>
-    </div>
-    <style>
-        
-
-        .mainContent {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-        }
-
-        .pMusic,
-        .pAlbum,
-        .rightContent {
-            background-color: #E6E6E6;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 30%;
-        }
-
-        .pMusic img,
-        .pAlbum img,
-        .rightContent img {
-            max-width: 30%;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-    <!-- <div>
->>>>>>> Stashed changes
             <p>Top Podcasts</p>
             <?php
                 // $sql2 = "SELECT * FROM podcasts
