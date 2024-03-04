@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 01, 2024 at 12:46 PM
+-- Generation Time: Mar 04, 2024 at 06:21 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -50,7 +50,6 @@ CREATE TABLE `albums` (
   `alname` varchar(255) NOT NULL,
   `alimage` varchar(255) NOT NULL,
   `alview` int(11) NOT NULL,
-  `aid` int(11) NOT NULL,
   `alstatus` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -58,8 +57,8 @@ CREATE TABLE `albums` (
 -- Dumping data for table `albums`
 --
 
-INSERT INTO `albums` (`alid`, `alname`, `alimage`, `alview`, `aid`, `alstatus`) VALUES
-(5, 'aaaaaaaaaaaaaaaaa', 'adf', 2, 2, 1);
+INSERT INTO `albums` (`alid`, `alname`, `alimage`, `alview`, `alstatus`) VALUES
+(6, 'Album1', '2.jpg', 111, 1);
 
 -- --------------------------------------------------------
 
@@ -72,6 +71,14 @@ CREATE TABLE `albums_songs` (
   `alid` int(11) NOT NULL,
   `sid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `albums_songs`
+--
+
+INSERT INTO `albums_songs` (`id`, `alid`, `sid`) VALUES
+(13, 6, 11),
+(14, 6, 12);
 
 -- --------------------------------------------------------
 
@@ -115,8 +122,7 @@ CREATE TABLE `playlist` (
 
 INSERT INTO `playlist` (`pid`, `pname`, `uid`) VALUES
 (4, 'Tên Playlist mới', 8),
-(5, 'Tên Playlist mới', 8),
-(6, 'Tên Playlist mới', 8);
+(5, 'Tên Playlist mới', 8);
 
 -- --------------------------------------------------------
 
@@ -161,7 +167,9 @@ CREATE TABLE `songs` (
 --
 
 INSERT INTO `songs` (`sid`, `sname`, `simage`, `slink`, `sview`, `sstatus`) VALUES
-(10, 'Fukumean', '2.jpg', '2.mp3', 0, 1);
+(10, 'Fukumean', '2.jpg', '2.mp3', 0, 1),
+(11, 'DucAnhBOM', '65e5d5f7697bc.jpg', '65e5764599065.mp3', 0, 1),
+(12, 'Dycccc', '65e5d60c35f34.jpg', '65e577c4451a1.mp3', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -180,8 +188,12 @@ CREATE TABLE `songs_artists` (
 --
 
 INSERT INTO `songs_artists` (`id`, `sid`, `aid`) VALUES
-(2, 10, 4),
-(4, 10, 3);
+(12, 10, 3),
+(20, 11, 3),
+(21, 11, 4),
+(22, 11, 5),
+(23, 12, 3),
+(24, 12, 6);
 
 -- --------------------------------------------------------
 
@@ -194,6 +206,17 @@ CREATE TABLE `songs_playlist` (
   `sid` int(11) NOT NULL,
   `pid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `songs_playlist`
+--
+
+INSERT INTO `songs_playlist` (`id`, `sid`, `pid`) VALUES
+(14, 11, 5),
+(16, 11, 5),
+(20, 11, 4),
+(21, 11, 4),
+(22, 12, 4);
 
 -- --------------------------------------------------------
 
@@ -292,13 +315,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `albums`
 --
 ALTER TABLE `albums`
-  MODIFY `alid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `alid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `albums_songs`
 --
 ALTER TABLE `albums_songs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `artists`
@@ -322,19 +345,19 @@ ALTER TABLE `podcasts`
 -- AUTO_INCREMENT for table `songs`
 --
 ALTER TABLE `songs`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `songs_artists`
 --
 ALTER TABLE `songs_artists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `songs_playlist`
 --
 ALTER TABLE `songs_playlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user`

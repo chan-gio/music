@@ -9,6 +9,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Kết nối đến CSDL
     include("../connect.php");
+
+    // Kiểm tra xem có ít nhất một ca sĩ đã được chọn hay không
+    if (isset($_POST['selectedArtists']) && !empty($_POST['selectedArtists'])) {
+        $selectedArtists = explode(',', $_POST['selectedArtists']);
+    } else {
+        $_SESSION["song_edit_error"] = "Bạn cần chọn ít nhất một ca sĩ!";
+        header("Location:../admin.php?manage=Song_edit&sid=$sid");
+        exit();
+    }
+
     $check = "Select * from songs where sname='" . $sname . "' AND sid != $sid";
     $result = $conn->query($check) or die($conn->error);
     if ($result->num_rows > 0) {
@@ -17,21 +27,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    //Check tên ca sĩ
-    $check = "Select * from artists where aname = '" .$sartist. "' ";
-    $result=$conn->query($check) or die($conn->error);
-    if($result->num_rows==0){
-        $_SESSION["song_add_error"]="Ca sĩ không tồn tại. Lưu ý: Phải nhập tên ca sĩ một cách chính xác!";
-        header("Location:../admin.php?manage=Song_add");
-        exit();
+    //Chỉnh sửa artists
+    $sql = "DELETE FROM songs_artists WHERE sid = $sid;";
+    $conn->query($sql) or die($conn->error);
+    // Xử lý mỗi giá trị aid
+    foreach ($selectedArtists as $aid) {
+        // Thực hiện insert vào bảng songs_artists
+        $sqlInsertSongArtist = "INSERT INTO songs_artists (sid, aid) VALUES ('$sid', '$aid')";
+        if ($conn->query($sqlInsertSongArtist) !== TRUE) {
+            $_SESSION["song_add_error"] = "Lỗi khi thêm dữ liệu vào bảng songs_artists: " . $conn->error;
+            header("Location:../admin.php?manage=songs");
+            exit();
+        }
     }
-    else{
-        $artist = $result->fetch_assoc();
-        $aid = $artist["aid"];
-    }
-    
 
-    $sql = "Update songs set sname ='$sname', aid = '$aid' where sid = $sid";
+
+    $sql = "Update songs set sname ='$sname' where sid = $sid";
     $conn->query($sql) or die($conn->error);
 
     // Sửa ảnh
@@ -80,4 +91,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location:../admin.php?manage=Song_edit&sid=$sid");
     exit();
 }
-?>

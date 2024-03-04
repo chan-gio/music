@@ -106,6 +106,7 @@
         LEFT JOIN artists ON songs_artists.aid = artists.aid
         WHERE
         songs.sstatus = 1
+        and songs.sid = $id
         GROUP BY
         songs.sid, songs.sname;
         ";
@@ -245,48 +246,47 @@
 
     //Hàm xử lý nếu người dùng ấn cancel thì không gửi form đi nữa(không thêm vào ds phát nữa)
     document.getElementById('playlistForm').addEventListener('submit', async function(event) {
-    event.preventDefault(); // Ngăn chặn việc gửi form đi mặc định
+        event.preventDefault(); // Ngăn chặn việc gửi form đi mặc định
 
-    var selectedPlaylists = document.querySelectorAll('input[name="playlists[]"]:checked');
-    var selectedPlaylistIds = []; // Mảng lưu các playlistId được chọn
-    var showWarning = false;
+        var selectedPlaylists = document.querySelectorAll('input[name="playlists[]"]:checked');
+        var selectedPlaylistIds = []; // Mảng lưu các playlistId được chọn
+        var showWarning = false;
 
-    for (var i = 0; i < selectedPlaylists.length; i++) {
-        var playlistId = selectedPlaylists[i].value;
+        for (var i = 0; i < selectedPlaylists.length; i++) {
+            var playlistId = selectedPlaylists[i].value;
 
-        try {
-            var isSongInPlaylist = await checkSongInPlaylist(songid, playlistId); // Sử dụng await để đợi cho đến khi kiểm tra AJAX hoàn thành
-            if (isSongInPlaylist) {
-                showWarning = true;
+            try {
+                var isSongInPlaylist = await checkSongInPlaylist(songid, playlistId); // Sử dụng await để đợi cho đến khi kiểm tra AJAX hoàn thành
+                if (isSongInPlaylist) {
+                    showWarning = true;
+                }
+                selectedPlaylistIds.push(playlistId); // Thêm playlistId vào mảng
+            } catch (error) {
+                console.error('Error checking song in playlist:', error);
             }
-            selectedPlaylistIds.push(playlistId); // Thêm playlistId vào mảng
-        } catch (error) {
-            console.error('Error checking song in playlist:', error);
         }
-    }
 
-    // Cập nhật giá trị cho input hidden playlistId với toàn bộ playlistId được chọn
-    document.getElementById('playlistId').value = selectedPlaylistIds.join(',');
+        // Cập nhật giá trị cho input hidden playlistId với toàn bộ playlistId được chọn
+        document.getElementById('playlistId').value = selectedPlaylistIds.join(',');
 
-    if (showWarning) {
-        var userConfirmation = confirm("Bài hát đã có trong danh sách phát, Bạn có muốn thêm lại không?");
-        if (userConfirmation) {
-            this.submit(); // Gửi form đi nếu người dùng đồng ý
+        if (showWarning) {
+            var userConfirmation = confirm("Bài hát đã có trong danh sách phát, Bạn có muốn thêm lại không?");
+            if (userConfirmation) {
+                this.submit(); // Gửi form đi nếu người dùng đồng ý
+            } else {
+                document.getElementById('id02').style.display = 'none'; // Ẩn modal nếu người dùng từ chối
+            }
         } else {
-            document.getElementById('id02').style.display = 'none'; // Ẩn modal nếu người dùng từ chối
+            this.submit(); // Gửi form đi nếu không cần hiển thị cảnh báo
         }
-    } else {
-        this.submit(); // Gửi form đi nếu không cần hiển thị cảnh báo
+    });
+
+
+    // Hàm cập nhật giá trị cho input hidden playlistId
+    function updatePlaylistId(id) {
+        selectedPlaylistId = id;
+        document.getElementById('playlistId').value = id;
     }
-});
-
-
-// Hàm cập nhật giá trị cho input hidden playlistId
-function updatePlaylistId(id) {
-    selectedPlaylistId = id;
-    document.getElementById('playlistId').value = id;
-}
-
 </script>
 
 <style>

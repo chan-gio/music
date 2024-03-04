@@ -8,7 +8,7 @@
 </head> 
 
 <body>
-    <form action="signup_action.php" method="post">
+    <form action="./actions/signup_action.php" method="post">
         <input type="text" placeholder="Email" name="email" id="Email_txt">
         <input type="text" placeholder="Tên đăng nhập" name="username" id="username_txt">
         <input type="password" placeholder="Mật khẩu" name="password" id="password_txt">

@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <form action="login_action.php" method="post">
+    <form action="./actions/login_action.php" method="post">
         <input type="text" placeholder="Tên đăng nhập" name="username" id="username_txt">
         <input type="password" placeholder="Mật khẩu" name="password" id="password_txt">
         <?php
@@ -18,6 +18,9 @@
         }
         else if(isset($_GET['error']) && $_GET['error'] == 7) {
             echo '<p style="color: red;">Đăng ký tạo tài khoản mới thành công</p>';
+        }
+        else if(isset($_GET['error']) && $_GET['error'] == 6) {
+            echo '<p style="color: red;">Đăng xuất thành công</p>';
         }
         ?>
         <button type="submit">Đăng nhập</button>
