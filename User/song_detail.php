@@ -14,7 +14,8 @@
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
             </div>
-
+            <input type="hidden" id="songid" name="songid">
+            <input type="hidden" id="playlistId" name="playlistId">
             <?php
             // Truy vấn để lấy danh sách các playlist
             $sql = "SELECT * FROM playlist";
@@ -82,6 +83,16 @@
 
     document.addEventListener('DOMContentLoaded', function() {
         var songDetail = document.getElementById('songDetail');
+        var selectedSongId = null;
+        var selectedPlaylistId = null;
+
+        // Hàm cập nhật giá trị cho input hidden songid
+        function updateSongId(id) {
+            selectedSongId = id;
+            document.getElementById('songid').value = id;
+        }
+
+
 
         <?php
         $id = $_GET['id'];
@@ -180,6 +191,8 @@
                     // Ở đây bạn có thể thực hiện xử lý để thêm vào danh sách phát
                     document.getElementById('id02').style.display = 'block'
                     songid = <?php echo $row['sid']; ?>;
+                    updateSongId(<?php echo $row['sid']; ?>); // Cập nhật songid khi người dùng chọn bài hát
+
                     console.log(songid);
                 });
 
@@ -231,44 +244,49 @@
     }
 
     //Hàm xử lý nếu người dùng ấn cancel thì không gửi form đi nữa(không thêm vào ds phát nữa)
-    document.getElementById('playlistForm').addEventListener('submit', function(event) {
-        // Lấy danh sách các checkbox đã chọn
-        var selectedPlaylists = document.querySelectorAll('input[name="playlists[]"]:checked');
+    document.getElementById('playlistForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Ngăn chặn việc gửi form đi mặc định
 
-        // Biến flag để kiểm tra xem có cần hiển thị cảnh báo hay không
-        var showWarning = false;
+    var selectedPlaylists = document.querySelectorAll('input[name="playlists[]"]:checked');
+    var selectedPlaylistIds = []; // Mảng lưu các playlistId được chọn
+    var showWarning = false;
 
-        // Lặp qua từng checkbox đã chọn
-        for (var i = 0; i < selectedPlaylists.length; i++) {
-            // Lấy giá trị pid của playlist được chọn
-            var playlistId = selectedPlaylists[i].value;
+    for (var i = 0; i < selectedPlaylists.length; i++) {
+        var playlistId = selectedPlaylists[i].value;
 
-            // Thực hiện kiểm tra trùng lặp trong database (sử dụng Ajax để gửi yêu cầu kiểm tra)
-            var isSongInPlaylist = checkSongInPlaylist(songid, playlistId);
-
-            // Nếu bài hát đã có trong playlist, ghi nhớ để hiển thị cảnh báo
+        try {
+            var isSongInPlaylist = await checkSongInPlaylist(songid, playlistId); // Sử dụng await để đợi cho đến khi kiểm tra AJAX hoàn thành
             if (isSongInPlaylist) {
                 showWarning = true;
             }
+            selectedPlaylistIds.push(playlistId); // Thêm playlistId vào mảng
+        } catch (error) {
+            console.error('Error checking song in playlist:', error);
         }
+    }
 
-        // Nếu cần hiển thị cảnh báo
-        if (showWarning) {
-            // Hiển thị cảnh báo và yêu cầu xác nhận
-            var userConfirmation = confirm("Bài hát đã có trong danh sách phát, Bạn có muốn thêm lại không?");
+    // Cập nhật giá trị cho input hidden playlistId với toàn bộ playlistId được chọn
+    document.getElementById('playlistId').value = selectedPlaylistIds.join(',');
 
-            // Kiểm tra giá trị trả về từ hộp thoại
-            if (userConfirmation) {
-                // Người dùng đã chọn "OK" thì mới submit form
-                var playlistForm = document.getElementById("playlistForm");
-                playlistForm.submit();
-            } else {
-                event.preventDefault();
-                document.getElementById('id02').style.display = 'none';
-            }
+    if (showWarning) {
+        var userConfirmation = confirm("Bài hát đã có trong danh sách phát, Bạn có muốn thêm lại không?");
+        if (userConfirmation) {
+            this.submit(); // Gửi form đi nếu người dùng đồng ý
+        } else {
+            document.getElementById('id02').style.display = 'none'; // Ẩn modal nếu người dùng từ chối
         }
+    } else {
+        this.submit(); // Gửi form đi nếu không cần hiển thị cảnh báo
+    }
+});
 
-    });
+
+// Hàm cập nhật giá trị cho input hidden playlistId
+function updatePlaylistId(id) {
+    selectedPlaylistId = id;
+    document.getElementById('playlistId').value = id;
+}
+
 </script>
 
 <style>

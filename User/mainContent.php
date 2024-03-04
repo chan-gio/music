@@ -15,7 +15,7 @@
             while($row6 = $result6->fetch_assoc()) {
                 $sid = $row6["sid"];
                 $sname = $row6["sname"];
-                $simage = "images/" . $row6["simage"];
+                $simage = "../images/" . $row6["simage"];
                 echo "<a href='index.php?sort=song_detail&id=$sid'><img src='$simage' alt='$sname'></a>";
                 echo $sname;
             }
@@ -40,7 +40,7 @@
             while($row5 = $result5->fetch_assoc()) {
                 $alid = $row5["alid"];
                 $alname = $row5["alname"];
-                $alimage = "albums/" . $row5["alimage"];
+                $alimage = "../albums/" . $row5["alimage"];
                 echo "<a href='index.php?sort=album_detail&id=$alid'><img src='$alimage' alt='$alname'></a>";
                 echo $alname;
             }
@@ -61,7 +61,7 @@
                 while($row1 = $result1->fetch_assoc()) {
                     $aname = $row1["aname"];
                     $aid = $row1["aid"];
-                    $aimage = "artists/".$row1["aimage"];
+                    $aimage = "../artists/".$row1["aimage"];
                     echo "<a href='index.php?sort=artist_detail&id=$aid'><img src='$aimage' alt='$aname'></a>";
                     echo $aname;
                 }

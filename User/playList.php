@@ -3,7 +3,6 @@
         <!-- Danh sách bài hát sẽ được thêm vào đây bằng JavaScript -->
     </ul>
     <button id="addPlayList">Thêm Play List</button>
-    <button id="deletePlayList">Xóa Play List</button>
 </div>
 
 <script>
@@ -11,11 +10,36 @@
     var audioPlayer = new Audio();
     var songs = []; // Mảng chứa danh sách bài hát
 
+    // Hàm để gửi yêu cầu AJAX để xóa playlist
+    function removePlaylist(pid) {
+        // Hiển thị hộp thoại xác nhận trước khi xóa playlist
+        var result = confirm("Bạn có chắc chắn muốn xóa playlist này không?");
+        if (result) {
+            // Nếu người dùng đồng ý, gửi yêu cầu AJAX để xóa playlist
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // Xóa thành công, làm mới trang hoặc cập nhật danh sách bài hát
+                        location.reload(); // Làm mới trang để cập nhật danh sách bài hát
+                    } else {
+                        // Xử lý lỗi khi xóa playlist
+                        console.error('Error removing playlist:', xhr.responseText);
+                    }
+                }
+            };
+            xhr.open('POST', './actions/remove_playlist.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            // Truyền pid của playlist cần xóa
+            var data = 'pid=' + encodeURIComponent(pid);
+            xhr.send(data);
+        }
+    }
+
     // Sự kiện DOMContentLoaded để tạo danh sách bài hát
     document.addEventListener('DOMContentLoaded', function() {
         var playList = document.getElementById('playList');
         var addPlayListButton = document.getElementById('addPlayList');
-        var deletePlayListButton = document.getElementById('deletePlayList');
 
         <?php
         // Truy vấn cơ sở dữ liệu để lấy các bài hát
@@ -45,6 +69,18 @@
                     window.location.href = this.href;
                 });
 
+                // Tạo nút "Xóa" cho mỗi danh sách phát
+                var deleteButton = document.createElement('button');
+                deleteButton.innerText = 'Xóa';
+                deleteButton.addEventListener('click', function(event) {
+                    event.stopPropagation(); // Ngăn chặn sự kiện click trên liên kết
+                    // Thực hiện hành động xóa playlist
+                    removePlaylist(<?php echo $plid; ?>); // Gọi hàm xóa playlist với pid tương ứng
+                });
+
+                // Thêm nút "Xóa" vào listItem
+                listItem.appendChild(deleteButton);
+
                 // Thêm listItem vào danh sách phát
                 playList.appendChild(listItem);
         <?php
@@ -58,13 +94,7 @@
         addPlayListButton.addEventListener('click', function() {
             // Xử lý logic khi người dùng nhấn nút "Thêm Play List"
             // Ví dụ: chuyển người dùng đến trang thêm Play List
-            window.location.href = "add_playlist.php";
-        });
-
-        // Thêm sự kiện click cho nút "Xóa Play List"
-        deletePlayListButton.addEventListener('click', function() {
-            // Xử lý logic khi người dùng nhấn nút "Xóa Play List"
-            // Ví dụ: hiển thị một thông báo xác nhận và gửi yêu cầu xóa Play List đến máy chủ
+            window.location.href = "./actions/add_playlist.php";
         });
     });
 </script>

@@ -57,7 +57,7 @@ function search(query) {
                         case 'song':
                             document.getElementById("songResults").style.display = "block";
                             var imageElement = document.createElement("img");
-                            imageElement.src = "images/" + result.image;
+                            imageElement.src = "../images/" + result.image;
                             imageElement.alt = result.name;
                             resultElement.appendChild(imageElement);
 
@@ -76,7 +76,7 @@ function search(query) {
                         case 'album':
                             document.getElementById("albumResults").style.display = "block";
                             var imageElement = document.createElement("img");
-                            imageElement.src = "albums/" + result.image;
+                            imageElement.src = "../albums/" + result.image;
                             imageElement.alt = result.name;
                             resultElement.appendChild(imageElement);
 
@@ -92,29 +92,29 @@ function search(query) {
                             albumListResults.appendChild(resultElement);
                             break;
 
-                        case 'podcast':
-                            document.getElementById("podcastResults").style.display = "block";
-                            var imageElement = document.createElement("img");
-                            imageElement.src = "podcasts/" + result.image;
-                            imageElement.alt = result.name;
-                            resultElement.appendChild(imageElement);
+                        // case 'podcast':
+                        //     document.getElementById("podcastResults").style.display = "block";
+                        //     var imageElement = document.createElement("img");
+                        //     imageElement.src = "podcasts/" + result.image;
+                        //     imageElement.alt = result.name;
+                        //     resultElement.appendChild(imageElement);
 
-                            var podcastItem = document.createElement("span");
-                            podcastItem.textContent = result.name + " by: " + result.artist;
-                            resultElement.appendChild(podcastItem);
+                        //     var podcastItem = document.createElement("span");
+                        //     podcastItem.textContent = result.name + " by: " + result.artist;
+                        //     resultElement.appendChild(podcastItem);
 
-                            // Thêm sự kiện click để điều hướng người dùng đến trang chi tiết podcast
-                            resultElement.addEventListener('click', function() {
-                                window.location.href = "index.php?sort=podcast_detail&id=" + result.id;
-                            });
+                        //     // Thêm sự kiện click để điều hướng người dùng đến trang chi tiết podcast
+                        //     resultElement.addEventListener('click', function() {
+                        //         window.location.href = "index.php?sort=podcast_detail&id=" + result.id;
+                        //     });
 
-                            podcastListResults.appendChild(resultElement);
-                            break;
+                        //     podcastListResults.appendChild(resultElement);
+                        //     break;
 
                         case 'artist':
                             document.getElementById("artistResults").style.display = "block";
                             var imageElement = document.createElement("img");
-                            imageElement.src = "artists/" + result.image;
+                            imageElement.src = "../artists/" + result.image;
                             imageElement.alt = result.name;
                             resultElement.appendChild(imageElement);
 
@@ -135,6 +135,11 @@ function search(query) {
                     }
                 }
             } else {
+                  // Hiển thị thông báo khi không có kết quả
+            document.getElementById("songResults").style.display = "none";
+            document.getElementById("albumResults").style.display = "none";
+            document.getElementById("podcastResults").style.display = "none";
+            document.getElementById("artistResults").style.display = "none";
             }
         }
     };
