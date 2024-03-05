@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password2 = $_POST['password2'];
 
     if($password != $password2) {
-        header("Location:signup.php?error=pass");
+        header("Location:../signup.php?error=pass");
         exit();
     }
 
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows > 0) {
         // Email đã tồn tại, chuyển hướng với thông báo lỗi
         
-        header("Location:signup.php?error=1");
+        header("Location:../signup.php?error=1");
         exit();
     }
 
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($result->num_rows > 0) {
         // Tên đăng nhập đã tồn tại, chuyển hướng với thông báo lỗi
-        header("Location: signup.php?error=2");
+        header("Location:../signup.php?error=2");
         exit();
     }
 
@@ -50,11 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if ($conn->query($sqlInsert) === TRUE) {
         // Đăng ký thành công, chuyển hướng đến trang khác (ví dụ: index.php)
-        header("Location: login.php?error=7");
+        header("Location:../login.php?error=7");
         exit();
     } else {
         // Đăng ký thất bại, chuyển hướng với thông báo lỗi
-        header("Location: signup.php?error=4");
+        header("Location:../signup.php?error=4");
         exit();
     }
 }

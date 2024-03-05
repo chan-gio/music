@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng ký</title>
 </head> 
-
+<?php
+?>
 <body>
     <div class="background">
     <img src="../images/logo/logo.png" class="logo">
@@ -16,10 +17,11 @@
         <input type="password" placeholder="                Password" name="password" id="password_txt" class="password">
         <input type="password" placeholder="                Confirm Password" name="password2" id="password2_txt" class="confirmpassword">
         <?php
+        
         if (isset($_GET['error']) && $_GET['error'] == 'pass') {
             echo '<p style="color: red;">Mật khẩu nhập lại không đúng.</p>';
         }
-        if (isset($_GET['error']) && $_GET['error'] == 1) {
+        else if (isset($_GET['error']) && $_GET['error'] == 1) {
             echo '<p style="color: red;">Email đã có người dùng. Vui lòng thử lại.</p>';
         }
         else if(isset($_GET['error']) && $_GET['error'] == 2) {
@@ -34,6 +36,8 @@
     </form>
     <a class="signup2">Already have account? <a href="login.php" class="signup">Sign In</a></a>
     </div>
+
+    
     <style>
         .email{
         position: relative;
