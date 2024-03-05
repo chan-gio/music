@@ -11,7 +11,7 @@
     <div class="background">
         <img src="../images/logo/logo.png" class="logo">
         <form action="./actions/login_action.php" method="post">
-            <input type="text" placeholder="                Username" name="Username" id="username_txt" class="signin">
+            <input type="text" placeholder="                Username" name="username" id="username_txt" class="signin">
             <input type="password" placeholder="                Password" name="password" id="password_txt" class="password">
             <?php
             // Display error message if redirected with an error parameter
