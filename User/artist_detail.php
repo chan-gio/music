@@ -84,6 +84,9 @@ if (!empty($songsArray)) {
         </form>
     </div>
 </div>
+<style>
+    
+</style>
 
 <script>
      // Đối tượng Audio để phát nhạc

@@ -196,6 +196,11 @@ h2 {
     flex-wrap: wrap;
     gap: 20px;
 }
+.resultList img{
+    max-width: 50%;
+    width: 100px;
+    Height: 100px;
+}
 
 /* Result Item Styles */
 .resultItem {

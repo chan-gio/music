@@ -1,17 +1,4 @@
 
-<div class ="mainContent">
-    <div class ="pMusic">
-    <p>Popular music</p>
-    <?php
-        $sql6 = "SELECT a.*, GROUP_CONCAT(c.aname)
-                    FROM songs a
-                    JOIN songs_artists b ON a.sid = b.sid
-                    JOIN artists c ON c.aid = b.aid
-                    GROUP BY a.sid, a.sname
-                    ORDER BY a.sview DESC
-                    LIMIT 0,10;";
-
-?>
 <div class="mainContent">
 
     <div class="pMusic">
@@ -138,11 +125,22 @@
         .pMusic img,
         .pAlbum img,
         .rightContent img {
-            max-width: 30%;
+            max-width: 35%;
+            width: 154px;
+            height: 154px;
             border-radius: 8px;
             margin-bottom: 10px;
         }
-
+        .rightContent {
+            left: 150px;
+            position: relative;
+             top:auto;
+        }
+        .pAlbum {
+            left: 50px;
+            top: 0px;
+            position: relative;
+        }
         p {
             font-size: 1.2em;
             font-weight: bold;
