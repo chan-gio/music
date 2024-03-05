@@ -7,7 +7,6 @@
         var isPlaying = false;
         // Biến để theo dõi vị trí của bài hát hiện tại
         var currentSongIndex = 0;
-        var currentSongSid  = parseInt(localStorage.getItem('currentSongSid')) || 0;
 
         document.addEventListener('DOMContentLoaded', function() {
             var songList = document.getElementById('songList');
@@ -59,7 +58,6 @@
 
                     // Thêm bài hát vào mảng songs
                     songs.push({
-                        id: '<?php echo $row["id"]; ?>',
                         title: '<?php echo $title; ?>',
                         url: '<?php echo $url; ?>',
                         author: '<?php echo $aname; ?>',
@@ -107,7 +105,6 @@
             // queueSongTitle.innerText = "Bài hát: " + currentSong.title;
             // queueSongAuthor.innerText = "Tác giả: " + currentSong.author;
             // queueSongImage.src = currentSong.image;
-            
         }
 
 
@@ -256,7 +253,6 @@
 
       // Lưu trạng thái phát nhạc vào localStorage
         function savePlayerState() {
-            localStorage.setItem('currentSongSid', songs[currentSongIndex].id); // Lưu sid của bài hát hiện tại
             localStorage.setItem('currentSongIndex', currentSongIndex);
             localStorage.setItem('isPlaying', isPlaying);
             // Lưu URL của bài hát hiện tại, nếu có
@@ -269,19 +265,15 @@
 
         // Khôi phục trạng thái phát nhạc từ localStorage
         function restorePlayerState() {
-            currentSongSid = parseInt(localStorage.getItem('currentSongSid')) || 0;
             currentSongIndex = parseInt(localStorage.getItem('currentSongIndex')) || 0;
             isPlaying = localStorage.getItem('isPlaying') === 'true';
             var currentSongURL = localStorage.getItem('currentSongURL');
             var currentTime = parseFloat(localStorage.getItem('currentTime')) || 0;
 
-            // Khôi phục sid của bài hát hiện tại từ localStorage
-            var currentSongSid = localStorage.getItem('currentSongSid');
-
-            // Nếu có sid của bài hát được lưu trữ, tìm chỉ số của bài hát dựa trên sid và phát bài hát
-            if (currentSongSid) {
+            // Nếu có URL của bài hát được lưu trữ, tìm chỉ số của bài hát dựa trên URL và phát bài hát
+            if (currentSongURL) {
                 for (var i = 0; i < songs.length; i++) {
-                    if (songs[i].id === currentSongSid) {
+                    if (songs[i].url === currentSongURL) {
                         currentSongIndex = i;
                         break;
                     }
@@ -289,23 +281,15 @@
                 // Phát bài hát
                 if (isPlaying) {
                     playCurrentSong();
-                } else {
+                }
+                else{
                     playCurrentSong();
-                    audioPlayer.pause();
+                    audioPlayer.pause()
                 }
                 // Thiết lập thời gian của bài hát
                 audioPlayer.currentTime = currentTime;
             }
         }
-
-        // Lấy thẻ <a> có id là 'currentSongLink'
-        var currentSongLink = document.getElementById('currentSongLink');
-
-        // Lắng nghe sự kiện DOMContentLoaded để đảm bảo rằng tất cả các phần tử đã được tạo ra trước khi thực hiện
-        document.addEventListener('DOMContentLoaded', function() {
-            // Gán giá trị của currentSongId vào thuộc tính id của thẻ <a>
-            currentSongLink.href = 'index.php?sort=song_detail&id=' + currentSongSid;
-        });
 
         // Lắng nghe sự kiện trước khi trang được tải hoặc đóng
         window.addEventListener('beforeunload', function() {
