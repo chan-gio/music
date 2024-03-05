@@ -15,7 +15,7 @@ $searchQuery = "SELECT 'song' AS type, s.sid AS id, s.sname AS name, GROUP_CONCA
 
                 UNION
 
-                SELECT 'album' AS type, al.alid ASid, al.alname ASname, GROUP_CONCAT(c.aname) AS artist ,al.alimage ASimage, '' ASlink
+                SELECT 'album' AS type, al.alid AS id, al.alname AS name, GROUP_CONCAT(c.aname) AS artist ,al.alimage AS image, '' AS link
                 FROM albums al
                 JOIN albums_songs d ON al.alid = d.alid
                 JOIN songs e ON e.sid = d.sid
@@ -24,13 +24,6 @@ $searchQuery = "SELECT 'song' AS type, s.sid AS id, s.sname AS name, GROUP_CONCA
                 WHERE al.alname LIKE '%$query%'
                 GROUP BY al.alid, al.alname
                 
-                -- UNION
-
-                -- SELECT 'podcast' AS type, po.poid AS podcast_id, po.poname AS podcast_name, a.aname AS artist_name ,po.poimage AS podcast_image, '' AS podcast_link
-                -- FROM podcasts po
-                -- JOIN artists a ON po.aid = a.aid
-                -- WHERE po.poname LIKE '%$query%'  
-
                 UNION
 
                 SELECT 'artist' AS type, aid AS id, aname AS artist, '' AS sth, aimage AS image, '' AS link

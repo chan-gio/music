@@ -44,7 +44,7 @@
 
     </div>
 
-    <div class="has-subnav">
+    <!-- <div class="has-subnav">
         <a href="index.php?sort=premiumContent">
             <div class="HOME">
                 <img src="../images/logo/Vector3.png">
@@ -55,7 +55,7 @@
                 </div>
             </a><br>
 
-    </div>
+    </div> -->
 
     <div class="has-subnav">
         <a href="index.php?sort=avatar">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 04, 2024 at 06:21 PM
+-- Generation Time: Mar 05, 2024 at 06:51 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -103,6 +103,20 @@ INSERT INTO `artists` (`aid`, `aname`, `aimage`, `aview`, `astatus`) VALUES
 (4, 'Jack23', '65df21c9dd0c5.jpg', 0, 1),
 (5, 'hai ba bốn', '65df21cfbd03c.jpg', 123, 1),
 (6, 'abc', '65de92b8a475d.jpg', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notify`
+--
+
+CREATE TABLE `notify` (
+  `nid` int(11) NOT NULL,
+  `nname` varchar(200) NOT NULL,
+  `ndesc` varchar(200) NOT NULL,
+  `nimage` varchar(200) NOT NULL,
+  `nlink` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -216,7 +230,10 @@ INSERT INTO `songs_playlist` (`id`, `sid`, `pid`) VALUES
 (16, 11, 5),
 (20, 11, 4),
 (21, 11, 4),
-(22, 12, 4);
+(22, 12, 4),
+(23, 12, 5),
+(24, 11, 4),
+(25, 12, 5);
 
 -- --------------------------------------------------------
 
@@ -264,6 +281,12 @@ ALTER TABLE `albums_songs`
 --
 ALTER TABLE `artists`
   ADD PRIMARY KEY (`aid`);
+
+--
+-- Indexes for table `notify`
+--
+ALTER TABLE `notify`
+  ADD PRIMARY KEY (`nid`);
 
 --
 -- Indexes for table `playlist`
@@ -330,6 +353,12 @@ ALTER TABLE `artists`
   MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `notify`
+--
+ALTER TABLE `notify`
+  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `playlist`
 --
 ALTER TABLE `playlist`
@@ -357,7 +386,7 @@ ALTER TABLE `songs_artists`
 -- AUTO_INCREMENT for table `songs_playlist`
 --
 ALTER TABLE `songs_playlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `user`

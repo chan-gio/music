@@ -1,3 +1,23 @@
+<?php 
+$sql = "SELECT * from notify"; 
+$result = $conn->query($sql); 
+if ($result->num_rows > 0) { 
+    while($row = $result->fetch_assoc()) { 
+        $nname = $row["nname"]; 
+        $ndesc = $row["ndesc"]; 
+        $nlink = $row["nlink"]; 
+        $nimage = "../images/" . $row["nimage"]; 
+        echo "<a href='$nlink'><img src='$nimage' alt='$nname'></a>"; 
+        echo $nname; 
+        echo $ndesc; 
+    } 
+} 
+?>
+
+
+
+
+
 <script>
 function playCurrentSong() {
     var currentSong = songs[currentSongIndex];
