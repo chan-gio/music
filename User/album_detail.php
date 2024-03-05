@@ -164,6 +164,22 @@ if (!empty($songsArray)) {
         audioPlayer.src = currentSong.url;
         audioPlayer.play();
     }
+    document.addEventListener('click', function(event) {
+    var optionsDivs = document.querySelectorAll('.options');
+
+    // Lặp qua tất cả các hộp thoại "Add to playlist" và kiểm tra xem chúng có cần ẩn không
+    optionsDivs.forEach(function(optionsDiv) {
+        var ellipsisIcon = optionsDiv.previousElementSibling; // Lấy phần tử dấu ba chấm tương ứng với hộp thoại "Add to playlist"
+
+        // Kiểm tra xem vị trí click có thuộc về hộp thoại "Add to playlist" hoặc phần tử cha của nó không
+        if (optionsDiv.style.display === 'block' && !ellipsisIcon.contains(event.target) && !optionsDiv.contains(event.target)) {
+            // Nếu không, ẩn hộp thoại "Add to playlist"
+            optionsDiv.style.display = 'none';
+        }
+    });
+});
+
+
 
     function showOptions() {
         var optionsDiv = this.parentElement.querySelector('.options');

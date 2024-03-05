@@ -95,10 +95,10 @@
 </div>
 <div class ="musicBar" style="display: flex; flex-direction: row;top: 608px;right: 647px;justify-content: space-between;align-items: center;padding: 16px;gap: 16px;width: 1396px;height: 104px;background: #4285F4;flex: none;order: 1;align-self: stretch;flex-grow: 0;position:relative;">
     <div id="playerBar">
-        <span id="currentSongTitle">Chưa có bài hát được chọn</span>
+    <a href="#" id="currentSongLink"><span id="currentSongTitle">Chưa có bài hát được chọn</span></a>
         <br>
         <span id="currentSongAuthor">Tác giả: Unknown</span>
-        <br>
+        <br>    
         <img id="currentSongImage" src="" alt   ="Hình ảnh bài hát" style="width:7%; height:90px;top:25px;position: absolute;right: 1030px;bottom: 0%;">
          <!-- Thêm phần tử hiển thị thời gian -->
         <div class="musicprogress" style="">
