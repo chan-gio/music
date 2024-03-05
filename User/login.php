@@ -19,10 +19,10 @@
                 echo '<p style="color: red;top: 290px;left: 170px; position: relative;">Sai tên đăng nhập hoặc mật khẩu. Vui lòng thử lại.</p>';
             }
             else if(isset($_GET['error']) && $_GET['error'] == 7) {
-                echo '<p style="color: red;top: 290px;left: 170px; position: relative;">Đăng ký tạo tài khoản mới thành công</p>';
+                echo '<p style="color: red;top: 290px;left: 220px; position: relative;">Đăng ký tạo tài khoản mới thành công</p>';
             }
             else if(isset($_GET['error']) && $_GET['error'] == 6) {
-                echo '<p style="color: red;">Đăng xuất thành công</p>';
+                echo '<p style="color: red;top: 290px;left: 270px; position: relative;">Đăng xuất thành công</p>';
             }
             ?>
             <button type="submit" class="buttonsignin">Sign In</button>

@@ -19,16 +19,16 @@
         <?php
         
         if (isset($_GET['error']) && $_GET['error'] == 'pass') {
-            echo '<p style="color: red;">Mật khẩu nhập lại không đúng.</p>';
+            echo '<p style="color: red;top: 470px;left: 240px; position: relative;">Mật khẩu nhập lại không đúng!.</p>';
         }
         else if (isset($_GET['error']) && $_GET['error'] == 1) {
-            echo '<p style="color: red;">Email đã có người dùng. Vui lòng thử lại.</p>';
+            echo '<p style="color: red;top: 470px;left: 210px; position: relative;">Email đã có người dùng. Vui lòng thử lại.</p>';
         }
         else if(isset($_GET['error']) && $_GET['error'] == 2) {
-            echo '<p style="color: red;">Tên đăng nhập đã có người dùng. Vui lòng thử lại.</p>';
+            echo '<p style="color: red;top: 470px;left: 190px; position: relative;">Tên đăng nhập đã có người dùng. Vui lòng thử lại.</p>';
         }
         else if(isset($_GET['error']) && $_GET['error'] == 3) {
-            echo '<p style="color: red;">Mật khẩu không hợp lệ. Vui lòng thử lại. (Mật khẩu hợp lệ phải có ít nhất 1 chữ cái và 1 chữ số.</p>';
+            echo '<p style="color: red;top: 470px;left: 210px; position: relative;">Mật khẩu không hợp lệ. Vui lòng thử lại. (Mật khẩu hợp lệ phải có ít nhất 1 chữ cái và 1 chữ số.</p>';
         }
         ?>
         <button type="submit" class="buttonsignup">Sign Up</button>

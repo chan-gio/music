@@ -15,7 +15,7 @@
                 $sid = $row6["sid"];
                 $sname = $row6["sname"];
                 $simage = "../images/" . $row6["simage"];
-                echo "<a href='index.php?sort=song_detail&id=$sid'><img src='$simage' alt='$sname'></a>";
+                echo "<a href='index.php?sort=song_detail&id=$sid'><img src='$simage' alt='$sname'></a><br>";
                 echo $sname;
             }
         }
@@ -40,7 +40,7 @@
                 $alid = $row5["alid"];
                 $alname = $row5["alname"];
                 $alimage = "../albums/" . $row5["alimage"];
-                echo "<a href='index.php?sort=album_detail&id=$alid'><img src='$alimage' alt='$alname'></a>";
+                echo "<a href='index.php?sort=album_detail&id=$alid'><img src='$alimage' alt='$alname'></a><br>";
                 echo $alname;
             }
         }
@@ -112,12 +112,25 @@
             padding: 16px;
         }
 
-        .pMusic,
-        .pAlbum,
-        .rightContent {
+        .pMusic{
             background-color: #E6E6E6;
             border-radius: 10px;
             padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+        }
+        .pAlbum{
+            background-color: #E6E6E6;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+        
+        }
+        .rightContent {
+            background-color: #E6E6E6;
+            border-radius: 10px;
+            padding: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 30%;
         }

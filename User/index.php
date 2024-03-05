@@ -93,7 +93,7 @@
 
    
 </div>
-<div class ="musicBar" style="display: flex; flex-direction: row;top: 608px;right: 647px;justify-content: space-between;align-items: center;padding: 16px;gap: 16px;width: 1396px;height: 104px;background: #4285F4;flex: none;order: 1;align-self: stretch;flex-grow: 0;position:relative;">
+<div class ="musicBar" style="display: flex; flex-direction: row;left: -10px;justify-content: space-between;align-items: center;padding: 16px;gap: 16px;width: 1396px;height: 104px;background: #4285F4;flex: none;order: 1;align-self: stretch;flex-grow: 0;position:relative;">
     <div id="playerBar">
         <span id="currentSongTitle">Chưa có bài hát được chọn</span>
         <br>
