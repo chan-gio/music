@@ -90,32 +90,45 @@
 
 
 
-    </div>
-    <div class="musicBar" style="display: flex; flex-direction: row;justify-content: space-between;align-items: center;padding: 16px;gap: 160px;width: 1341px;height: 104px;background: #4285F4;flex: none;order: 1;align-self: stretch;flex-grow: 0;">
-        <div id="playerBar">
-            <span id="currentSongTitle">Chưa có bài hát được chọn</span>
-            <br>
-            <span id="currentSongAuthor">Tác giả: Unknown</span>
-            <br>
-            <img id="currentSongImage" src="" alt="Hình ảnh bài hát" style="width:7%; height:auto;position: absolute;right: 1250px;top: 878px;bottom: 0%;">
-            <!-- Thêm phần tử hiển thị thời gian -->
-            <div class="musicprogress" style="">
-                <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
-            </div>
-        </div>
-        <!-- Thêm thanh trạng thái thời gian vào đây -->
-        <input type="range" id="progressBar" min="0" value="0" step="1">
 
-        <!-- Thêm nút phát/dừng -->
-        <button id="playPauseButton">Phát</button>
-        <!-- Thêm nút Previous -->
-        <button id="previousButton">Previous</button>
-        <!-- Thêm nút Next -->
-        <button id="nextButton">Next</button>
-        <!-- Thêm nút lặp lại -->
-        <button id="repeatButton">Lặp lại</button>
-        <!-- Thêm nút phát ngẫu nhiên -->
-        <button id="shuffleButton">Phát ngẫu nhiên</button>
+   
+</div>
+<div class ="musicBar" style="display: flex; flex-direction: row;top: 608px;right: 647px;justify-content: space-between;align-items: center;padding: 16px;gap: 16px;width: 1396px;height: 104px;background: #4285F4;flex: none;order: 1;align-self: stretch;flex-grow: 0;position:relative;">
+    <div id="playerBar">
+        <span id="currentSongTitle">Chưa có bài hát được chọn</span>
+        <br>
+        <span id="currentSongAuthor">Tác giả: Unknown</span>
+        <br>
+        <img id="currentSongImage" src="" alt   ="Hình ảnh bài hát" style="width:7%; height:90px;top:25px;position: absolute;right: 1030px;bottom: 0%;">
+         <!-- Thêm phần tử hiển thị thời gian -->
+        <div class="musicprogress" style="">
+            <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
+        </div>
+
+    </div>
+        <!-- Thêm thanh trạng thái thời gian vào đây -->
+    <input type="range" id="progressBar" min="0" value="0" step="1">
+    <!-- Thêm nút phát ngẫu nhiên -->
+    <button id="shuffleButton">
+        <img src="../images/logo/Random.png">
+    </button>
+    <!-- Thêm nút Previous -->
+    <button id="previousButton">
+
+        <img src="../images/logo/Previous.png" >
+    </button>
+    <button id="playPauseButton">
+        <img src="../images/logo/Pause.png">
+    </button>
+    <!-- Thêm nút Next -->
+    <button id="nextButton">
+        <img src="../images/logo/Next.png">
+    </button>
+    <!-- Thêm nút lặp lại -->
+    <!-- Thêm nút phát ngẫu nhiên -->
+    <button id="repeatButton">
+        <img src="../images/logo/loop.png">
+    </button>
         <div>
             <a href="index.php?sort=queue">
                 <i class="fa-solid fa-shirt fa fa-2x"></i>
