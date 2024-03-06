@@ -18,6 +18,9 @@
             if (isset($_GET['error']) && $_GET['error'] == 1) {
                 echo '<p style="color: red;top: 290px;left: 170px; position: relative;">Sai tên đăng nhập hoặc mật khẩu. Vui lòng thử lại.</p>';
             }
+            else if(isset($_GET['error']) && $_GET['error'] == 2) {
+                echo '<p style="color: red;top: 290px;left: 60px; position: relative;">Tài khoản của bạn hiện đang tạm bị khóa, vui lòng liên hệ trung tâm hỗ trợ để được giải quyết!</p>';
+            }
             else if(isset($_GET['error']) && $_GET['error'] == 7) {
                 echo '<p style="color: red;top: 290px;left: 220px; position: relative;">Đăng ký tạo tài khoản mới thành công</p>';
             }
