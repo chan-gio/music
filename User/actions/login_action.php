@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 
 include('../connect.php');
 
@@ -14,7 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows > 0) {
         // Lấy thông tin user
         $user = $result->fetch_assoc();
-
+        //Nếu tài khoản bị khóa
+        if ($user['ustatus'] == 0) {
+            header("Location:../login.php?error=2");
+            exit();
+        }
         // Lưu uid vào session
         $_SESSION['uid'] = $user['uid'];
         $_SESSION['uname'] = $user['uname'];
@@ -30,4 +34,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $conn->close();
-?>
