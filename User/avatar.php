@@ -11,9 +11,19 @@
     <br>
     <h2>Email: </h2><h3><?php echo $row['uemail'] ?></h3>
     <br>
-    <button onclick="confirmLogout()">Log out</button>
+    <button class="logout" onclick="confirmLogout()">Log out</button>
 
 </body>
+
+<style>
+    .logout {
+        width: 60px;
+        height: 35px;
+        top: 20px;
+        left: 500px;
+        position: relative;
+    }
+</style>
 
 <script>
 function confirmLogout() {

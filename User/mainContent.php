@@ -1,6 +1,4 @@
-
 <div class="mainContent">
-
     <div class="pMusic">
         <p>Popular music</p>
         <?php
@@ -49,8 +47,9 @@
     </div>
 </div>
 <div class = "rightContent">
-        <div>
-            <p>Popular Astist</p>
+        <p>Popular Astist</p><br>
+        <div class="rightContent2">
+            
             <?php
              $sql1 = "SELECT * FROM artists
                     ORDER BY aview DESC LIMIT 0,10";
@@ -113,45 +112,100 @@
         }
 
         .pMusic{
-            background-color: #E6E6E6;
+            
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 200px;
+            position: relative;
+            top: -32px;
         }
         .pAlbum{
-            background-color: #E6E6E6;
+            
             border-radius: 10px;
             padding: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 200px;
         
         }
-        .rightContent {
-            background-color: #E6E6E6;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 30%;
+        .rightContent2{
+            
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            align-content: flex-start;
+            padding: 0px;
+            gap: 16px;
+
+            width: 416px;
+            height: 506px;
+           
+            max-height: 500px;
+
+            flex: none;
+            order: 1;
+            align-self: stretch;
+            flex-grow: 0;
+
+
         }
+       
+        
 
         .pMusic img,
         .pAlbum img,
-        .rightContent img {
-            max-width: 35%;
-            width: 154px;
-            height: 154px;
-            border-radius: 8px;
-            margin-bottom: 10px;
+        .rightContent2 img {
+
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 10px;
+            width: 120px;
+            height: 120px;
+            
+            order: 0;
+            flex-grow: 2;
+
+        }
+        .rightContent2{
+            
+            
+            width: 120px;
+            height: 15px;
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 14px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            text-align: center;
+            letter-spacing: 1px;
+
+            color: #666666;
+
+
+
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+
         }
         .rightContent {
+            
             left: 150px;
             position: relative;
-             top:auto;
+            top: auto;
         }
         .pAlbum {
+            
             left: 50px;
-            top: 0px;
+            top: -23px;
             position: relative;
         }
         p {
