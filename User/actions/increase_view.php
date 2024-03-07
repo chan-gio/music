@@ -13,6 +13,17 @@ $songId = $_GET['id'];
 // Truy vấn SQL để tăng số lượt xem của bài hát
 $sql = "UPDATE songs SET sview = sview + 1 WHERE sid = ?";
 
+$sql1 = "UPDATE albums a
+        JOIN (
+            SELECT b.alid, SUM(c.sview) AS total_view
+            FROM albums_songs b
+            JOIN songs c ON b.sid = c.sid
+            GROUP BY b.alid
+        ) AS album_views ON a.alid = album_views.alid
+        SET a.alview = album_views.total_view
+        WHERE a.alid > 0;";
+
+
 // Truy vấn SQL để tăng số lượt xem của nghệ sĩ có liên quan đến bài hát
 $sql2 = "UPDATE artists a
         JOIN songs_artists c ON a.aid = c.aid
