@@ -21,7 +21,7 @@ if ($result->num_rows > 0) {
         $nname = $row["nname"]; 
         $ndesc = $row["ndesc"]; 
         $nlink = $row["nlink"]; 
-        $nimage = "../images/" . $row["nimage"]; 
+        $nimage = "../notify/" . $row["nimage"]; 
 
         echo "<li class='notification-item'>"; 
 
