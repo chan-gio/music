@@ -182,7 +182,7 @@
 #artistResults {
     top: 20px;
     display: none;
-    color: #fff;
+    
 }
 
 h2 {

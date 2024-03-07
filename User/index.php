@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
     <div style="display: flex;">
         <?php
         session_start();
@@ -99,7 +100,7 @@
         <br>
         <span id="currentSongAuthor">Tác giả: Unknown</span>
         <br>
-        <img id="currentSongImage" src="" alt   ="Hình ảnh bài hát" style="width:7%; height:90px;top:25px;position: absolute;right: 1030px;bottom: 0%;">
+        <img id="currentSongImage" src="" alt   ="Hình ảnh bài hát" style="width:7%; height:90px;top:25px;position: absolute;right: 1080px;bottom: 0%;">
          <!-- Thêm phần tử hiển thị thời gian -->
         <div class="musicprogress" style="">
             <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
@@ -145,6 +146,17 @@
     <?php
     include "musicBar.php"
     ?>
+    <!-- <style>
+       body {
+    transition: background-color 0.5s, color 0.5s;
+    }
+
+    .dark-mode body {
+    background-color: #333333;
+    color: #ffffff;
+    }
+    </style> -->
+    <script src="script.js"></script>
 </body>
 
 </html>

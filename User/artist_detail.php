@@ -20,7 +20,7 @@ if (!empty($songsArray)) {
     $aimage = $songsArray[0]["aimage"];
 ?>
     <h2 id="artistName"><?php echo $aname; ?></h2>
-    <img src="<?php echo "../artists/" . $aimage; ?>" alt="">
+    <img src="<?php echo "../artists/" . $aimage; ?>" alt="" class="artistsimg">
 <?php
 } else {
     echo "console.log('0 results');";
@@ -305,4 +305,79 @@ if (!empty($songsArray)) {
         background-color: #f1f1f1;
         cursor: pointer;
     }
+    
+    .artistDetail {
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+
+    .artistDetail ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .artistDetail font {
+        color: red;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    .artistimg{
+        width: 10px;
+        height: 10px;
+    }
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-check {
+        margin-bottom: 10px;
+    }
+
+    /* Styling for the group-button */
+    .group-button {
+        margin-top: 20px;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .modal-content {
+            width: 80%;
+        }
+    }
+    
 </style>

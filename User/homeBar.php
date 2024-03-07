@@ -1,5 +1,6 @@
 <div class="homeBar">
     <link rel="stylesheet" type="text/css" href="style.css">
+
     <?php
     $imageUrl = "../images/logo/logo.png"; 
     ?>
@@ -69,7 +70,16 @@
         </a><br>
 
     </div>
+    
     <style>
+        .HOME {
+            cursor: pointer;
+}
+
+        .HOME.selected {
+            background-color: #3498db; 
+            color: #fff; 
+        }
          a {
             text-decoration: none;
         }
@@ -85,6 +95,16 @@
             .HOME:focus{
                  background-color: #EEEEEE;
             }
+            
     </style>
+    <script>
+        function selectNavItem(element) {
+    // Remove the 'selected' class from all nav items
+    var navItems = document.querySelectorAll('.nav-link');
+    navItems.forEach(item => item.classList.remove('selected'));
 
+    // Add the 'selected' class to the clicked nav item
+    element.classList.add('selected');
+}
+    </script>
 </div>
