@@ -115,6 +115,7 @@
         // Hiển thị các liên kết đến bài hát
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
+                $sview = $row["sview"];
                 $title = $row["sname"];
                 $url = "../songs/" . $row["slink"];
                 $image = "../images/" . $row["simage"];
@@ -150,6 +151,8 @@
                 var link = document.createElement('a');
                 link.href = 'javascript:void(0)';
                 link.innerText = '<?php echo $title; ?>';
+                var viewCountDiv = document.createElement('p');
+                viewCountDiv.innerText = 'View: ' + <?php echo $sview; ?>;
                 link.addEventListener('click', function() {
                     // Lấy index của bài hát được click
                     var index = songs.findIndex(function(song) {
@@ -170,6 +173,7 @@
                 listItem.appendChild(img); // Thêm ảnh vào mục danh sách
                 listItem.appendChild(link);
                 songDetail.appendChild(listItem);
+                
 
                 // Thêm icon ba chấm vào bên cạnh tên bài hát
                 var ellipsisIcon = document.createElement('i');
@@ -177,6 +181,8 @@
                 ellipsisIcon.addEventListener('click', showOptions); // Thêm sự kiện click cho biểu tượng ba chấm
                 listItem.appendChild(ellipsisIcon); // Thêm icon ba chấm vào liên kết
                 ellipsisIcon.style.marginLeft = '6px';
+                listItem.appendChild(viewCountDiv);
+
 
                 // Tạo thẻ div chứa lựa chọn "thêm vào danh sách phát"
                 var optionsDiv = document.createElement('div');
@@ -194,8 +200,6 @@
                     document.getElementById('id02').style.display = 'block'
                     songid = <?php echo $row['sid']; ?>;
                     updateSongId(<?php echo $row['sid']; ?>); // Cập nhật songid khi người dùng chọn bài hát
-
-                    console.log(songid);
                 });
 
                 optionsDiv.appendChild(addToPlaylistOption);

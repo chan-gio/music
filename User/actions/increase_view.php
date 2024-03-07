@@ -24,6 +24,7 @@ $sql1 = "UPDATE albums a
         WHERE a.alid > 0;";
 
 
+
 // Truy vấn SQL để tăng số lượt xem của nghệ sĩ có liên quan đến bài hát
 $sql2 = "UPDATE artists a
         JOIN songs_artists c ON a.aid = c.aid
@@ -39,6 +40,12 @@ try {
     $stmt->bind_param('i', $songId);
     $stmt->execute();
     $stmt->close();
+    
+    // Thực thi truy vấn SQL cho album
+    $stmt1 = $conn->prepare($sql1);
+    $stmt1->execute(); // Không cần bind_param vì không có tham số trong câu lệnh SQL
+    $stmt1->close();
+
 
     // Thực thi truy vấn SQL cho nghệ sĩ
     $stmt2 = $conn->prepare($sql2);

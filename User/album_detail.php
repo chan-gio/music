@@ -20,10 +20,17 @@ $songsArray = $result->fetch_all(MYSQLI_ASSOC);
 
 // Hiển thị tên album
 if (!empty($songsArray)) {
+    $alview = $songsArray[0]["alview"];
+    $anameConcatenated = $songsArray[0]["GROUP_CONCAT(d.aname)"]; // Lấy chuỗi kết hợp của tất cả các giá trị aname
+    $anames = explode(',', $anameConcatenated); // Tách chuỗi thành một mảng các giá trị riêng lẻ
     $alname = $songsArray[0]["alname"];
     $alimage = $songsArray[0]["alimage"];
 ?>
+    <div>
     <h2 id="albumName"><?php echo $alname; ?></h2>
+    <h3 id="artistName"><?php echo implode(', ', $anames); ?></h3>
+    <p>View:<?php echo $alview; ?></p>
+    </div>
     <img src="<?php echo "../albums/" . $alimage; ?>" alt="">
 <?php
 } else {

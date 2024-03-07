@@ -16,10 +16,12 @@ $songsArray = $result->fetch_all(MYSQLI_ASSOC);
 
 // Hiển thị tên album
 if (!empty($songsArray)) {
+    $aview = $songsArray[0]["aview"];
     $aname = $songsArray[0]["aname"];
     $aimage = $songsArray[0]["aimage"];
 ?>
     <h2 id="artistName"><?php echo $aname; ?></h2>
+    <p>View: <?php echo $aview; ?></p>
     <img src="<?php echo "../artists/" . $aimage; ?>" alt="" class="artistsimg">
 <?php
 } else {
