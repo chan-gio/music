@@ -34,7 +34,6 @@ if (!empty($songsArray)) {
     <h3 id="artistName"><?php echo implode(', ', $anames); ?></h3>
     <p>View:<?php echo $alview; ?></p>
     </div>
-    <img src="<?php echo "../albums/" . $alimage; ?>" alt="">
 <?php
 } else {
     echo "Album hiện không có bài hát nào";

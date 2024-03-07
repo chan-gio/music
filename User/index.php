@@ -94,7 +94,7 @@
 
    
 </div>
-<div class ="musicBar" style="display: flex; flex-direction: row;left: 320px;top: -100px;align-items: center;padding: 16px;gap: 100px;width: 76.5%;height: 104px;background: #4285F4;flex: none;order: 1;align-self: stretch;flex-grow: 0;position:relative;">
+<div class ="musicBar" style="display: flex; flex-direction: row;align-items: center;padding: 16px;gap: 100px;width: 100%;height: 104px;background: #4285F4;flex: none;order: 1;align-self: stretch;flex-grow: 0;position:relative;">
     <div id="playerBar">
     <div style="display: flex">    
     <img id="currentSongImage" src="" alt   ="Hình ảnh bài hát" style="height:90px;top:25px;right: 1080px;bottom: 0%;">

@@ -1,9 +1,15 @@
+<?php
+    $id = $_GET['id'];
+    $sql2 = "select * from playlist where pid=".$id;
+    $result2 = $conn->query($sql2);
+    $row2 = $result2->fetch_assoc();
+?>
+<h1><?php echo $row2['pname'] ?></h1>
 <div class="playList">
     <ul id="playList">
         <!-- Danh sách bài hát sẽ được thêm vào đây bằng JavaScript -->
     </ul>
 </div>
-
 <script>
     // Đối tượng Audio để phát nhạc
     var audioPlayer = new Audio();
@@ -53,7 +59,8 @@
         var playList = document.getElementById('playList');
 
         <?php
-        $id = $_GET['id'];
+        
+
         // Truy vấn cơ sở dữ liệu để lấy các bài hát
         $sql = "SELECT a.pid, c.*,
                     (SELECT d.aname 

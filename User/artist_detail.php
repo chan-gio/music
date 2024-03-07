@@ -26,7 +26,6 @@ if (!empty($songsArray)) {
     </div>
     <h2 id="artistName"><?php echo $aname; ?></h2>
     <p>View: <?php echo $aview; ?></p>
-    <img src="<?php echo "../artists/" . $aimage; ?>" alt="" class="artistsimg">
 <?php
 } else {
     echo "console.log('0 results');";
