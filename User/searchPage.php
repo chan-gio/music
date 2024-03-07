@@ -198,7 +198,7 @@ case 'artist':
     border-radius: 30px;
     font-size: 16px;
     background-color: #EEEEEE;
-    color: #fff;
+    color: #111;
     outline: none;
     margin-top: 20px;
 }

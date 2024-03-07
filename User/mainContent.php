@@ -21,8 +21,10 @@
     ?>
     </div>
     </div>
+    <div>
+    <p style="left: 100px; position: relative;" >Popular album</p>
     <div class = "pAlbum">
-    <p>Popular album</p>
+    
     <?php
         $sql5 = "SELECT a.*, GROUP_CONCAT(c.aname), SUM(a.alview) AS total_views 
                 FROM albums a
@@ -48,9 +50,12 @@
     ?>
 
     </div>
+    </div>
 </div>
+<div>
+<p style="left:190px; position:relative;top: 10px;">Popular Astist</p>
 <div class = "rightContent">
-        <p>Popular Astist</p><br>
+        
         <div class="rightContent2">
             
             <?php
@@ -70,7 +75,7 @@
              }
             ?>
         </div>
-
+</div>
         <!-- <div>
 
         if ($result1->num_rows > 0) {
@@ -118,11 +123,12 @@
         .pMusic{
             
 
-            border:black;
-            border-radius: 1px;
+            border-radius: 8px; 
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             padding: 0px;
             gap: 8px;
 
@@ -144,15 +150,17 @@
 
         }
         .pAlbum{
-            
+            border-radius: 8px; 
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             padding: 0px;
             gap: 6px;
 
             width: 207px;
-            height: 336px;
+            height: 252px;
 
             flex: none;
             order: 2;
@@ -167,13 +175,13 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        align-items: flex-start;
+        align-items: center;
         align-content: flex-start;
         padding: 0px;
         gap: 16px;
 
-        width: 416px;
-        height: 306px;
+        width: 400px;
+        height: 252px;
 
         flex: none;
         order: 1;
@@ -186,7 +194,9 @@
         font-size: 13px;
         line-height: 14px;
         letter-spacing: 1px;
-
+        border-radius: 8px; 
+        margin-bottom: 20px;
+        border: 2px solid #ddd;    
 
         }
        

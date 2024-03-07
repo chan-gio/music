@@ -19,8 +19,11 @@ if (!empty($songsArray)) {
     $aname = $songsArray[0]["aname"];
     $aimage = $songsArray[0]["aimage"];
 ?>
+    
+    <div class="artistsimg">
+        <img src="<?php echo "../artists/" . $aimage; ?>" alt="" class="imgartist" >
+    </div>
     <h2 id="artistName"><?php echo $aname; ?></h2>
-    <img src="<?php echo "../artists/" . $aimage; ?>" alt="" class="artistsimg">
 <?php
 } else {
     echo "console.log('0 results');";
@@ -281,9 +284,7 @@ if (!empty($songsArray)) {
     unset($_SESSION["notify"]);
 ?>
 <style>
-    @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css);
 
-    @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 
     .options {
         position: absolute;
@@ -307,9 +308,15 @@ if (!empty($songsArray)) {
     }
     
     .artistDetail {
+        position: relative;
+        right: 160px;
+        top: 120px;
+        width: 440px;
+        height: 252px;
         padding: 20px;
-        background-color: #f9f9f9;
-        border: 1px solid #ddd;
+        gap: 10px;
+        background-color: #ffffff;
+        border: 1px solid #fff;
         border-radius: 8px;
         margin: 20px 0;
     }
@@ -334,9 +341,10 @@ if (!empty($songsArray)) {
         overflow: auto;
         background-color: rgba(0, 0, 0, 0.4);
     }
-    .artistimg{
-        width: 10px;
-        height: 10px;
+    .imgartist{
+        position:relative;
+        width: 120px;
+        height: 120px;
     }
     .modal-content {
         background-color: #fefefe;
