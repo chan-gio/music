@@ -26,7 +26,10 @@ if (!empty($songsArray)) {
     $alname = $songsArray[0]["alname"];
     $alimage = $songsArray[0]["alimage"];
 ?>
-    <div>
+<div class="albumimg">
+        <img src="<?php echo "../albums/" . $alimage; ?>" alt="" class="imgalbum">
+    </div>    
+<div>
     <h2 id="albumName"><?php echo $alname; ?></h2>
     <h3 id="artistName"><?php echo implode(', ', $anames); ?></h3>
     <p>View:<?php echo $alview; ?></p>
@@ -255,10 +258,6 @@ if (!empty($songsArray)) {
     unset($_SESSION["notify"]);
 ?>
 <style>
-    @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css);
-
-    @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
-
     .options {
         position: absolute;
         background-color: #fff;
@@ -278,5 +277,86 @@ if (!empty($songsArray)) {
     .options:hover {
         background-color: #f1f1f1;
         cursor: pointer;
+    }
+    
+    .albumDetail {
+        position: relative;
+        right: 210px;
+        top: 120px;
+        width: 440px;
+        height: 252px;
+        padding: 20px;
+        gap: 10px;
+        background-color: #ffffff;
+        border: 1px solid #fff;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+
+    .albumDetail ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .albumDetail font {
+        color: red;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    .imgalbum{
+        position:relative;
+        width: 120px;
+        height: 120px;
+    }
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-check {
+        margin-bottom: 10px;
+    }
+
+    /* Styling for the group-button */
+    .group-button {
+        margin-top: 20px;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .modal-content {
+            width: 80%;
+        }
     }
 </style>

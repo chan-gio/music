@@ -94,7 +94,7 @@
 
    
 </div>
-<div class ="musicBar" style="display: flex; flex-direction: row;left: -10px;align-items: center;padding: 16px;gap: 100px;width: 100%;height: 104px;background: #4285F4;flex: none;order: 1;align-self: stretch;flex-grow: 0;position:relative;">
+<div class ="musicBar" style="display: flex; flex-direction: row;left: 320px;top: -100px;align-items: center;padding: 16px;gap: 100px;width: 76.5%;height: 104px;background: #4285F4;flex: none;order: 1;align-self: stretch;flex-grow: 0;position:relative;">
     <div id="playerBar">
     <div style="display: flex">    
     <img id="currentSongImage" src="" alt   ="Hình ảnh bài hát" style="height:90px;top:25px;right: 1080px;bottom: 0%;">
@@ -109,36 +109,37 @@
     <div>
     <div>    
     <!-- Thêm thanh trạng thái thời gian vào đây -->
-            <input type="range" id="progressBar" min="0" value="0" step="1" style = " width: 700px;">
+            <input type="range" id="progressBar" min="0" value="0" step="1" style = " width: 400px;right:100px;position: relative;">
         
         <!-- Thêm phần tử hiển thị thời gian -->
-            <div class="musicprogress" style=" display: flex;
-    justify-content: space-between;">
+            <div class="musicprogress" style=" display: flex; justify-content: space-between; right:100px;position: relative;">
                 <span id="currentTime">0:00</span>
                 <span id="totalTime">0:00</span>
             </div>
             </div>
-    <div style="    text-align: center;">
+    <div style="    text-align: center;right: 100px; position: relative;">
             <!-- Thêm nút phát ngẫu nhiên -->
     <button id="shuffleButton">
-        <img src="../imxages/logo/Random.png">
+
+        <img src="../images/logo/Random.png" style="background-color: black">
+
     </button>
     <!-- Thêm nút Previous -->
     <button id="previousButton">
 
-        <img src="../images/logo/Previous.png" >
+        <img src="../images/logo/Previous.png" style="background-color: black">
     </button>
     <button id="playPauseButton">
-        <img src="../images/logo/Pause.png">
+        <img src="../images/logo/play.png"style="background-color: black; width:10px;">
     </button>
     <!-- Thêm nút Next -->
     <button id="nextButton">
-        <img src="../images/logo/Next.png">
+        <img src="../images/logo/Next.png"style="background-color: black">
     </button>
     <!-- Thêm nút lặp lại -->
     <!-- Thêm nút phát ngẫu nhiên -->
     <button id="repeatButton">
-        <img src="../images/logo/loop.png">
+        <img src="../images/logo/loop.png"style="background-color: black">
     </button>
     <a href="index.php?sort=queue">
                 <i class=""></i>

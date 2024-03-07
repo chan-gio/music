@@ -131,19 +131,28 @@
             playCurrentSong();
         });
         // Lắng nghe sự kiện play của đối tượng Audio
+        var playImgSrc = '../images/logo/play.png';  // Đường dẫn hình ảnh cho trạng thái phát
+        var pauseImgSrc = '../images/logo/Pause.png';
+
         audioPlayer.addEventListener('play', function() {
             // Đặt biến isPlaying thành true khi bài hát được phát
             isPlaying = true;
-            // Đổi nút phát/dừng thành nút dừng
-            playPauseButton.innerText = "Dừng";
+
+            // Thay đổi nội dung của nút từ văn bản thành hình ảnh dựa trên trạng thái hiện tại
+            var imgSrc = isPlaying ? pauseImgSrc : playImgSrc;
+            playPauseButton.innerHTML = '<img src="' + imgSrc + '" alt="Phát/Dừng">';
         });
 
+
         // Lắng nghe sự kiện pause của đối tượng Audio
+        var playImgSrc = '../images/logo/play.png';
+        var pauseImgSrc = '../images/logo/Pause.png';
         audioPlayer.addEventListener('pause', function() {
             // Đặt biến isPlaying thành false khi bài hát dừng
             isPlaying = false;
             // Đổi nút phát/dừng thành nút phát
-            playPauseButton.innerText = "Phát";
+            var imgSrc = isPlaying ? pauseImgSrc : playImgSrc;
+            layPauseButton.innerHTML = '<img src="' + imgSrc + '" alt="Phát/Dừng">';
 
         });
          // Lắng nghe sự kiện input của thanh trạng thái thời gian để tua
@@ -205,7 +214,11 @@
             // Đảo ngược trạng thái lặp lại
             audioPlayer.loop = !audioPlayer.loop;
             // Cập nhật văn bản của nút
-            repeatButton.innerText = audioPlayer.loop ? "Lặp lại: Bật" : "Lặp lại: Tắt";
+            
+
+            var imageSrc = audioPlayer.loop ? '../images/logo/loop.png' : '../images/logo/loop.png';
+            document.getElementById('yourImageElementId').src = imageSrc;
+            repeatButton.classList.toggle('active');
         });
 
         // Biến để kiểm tra trạng thái của chế độ lặp lại

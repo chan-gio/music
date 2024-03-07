@@ -137,3 +137,54 @@
         ?>
     });
 </script>
+<style>
+            /* Style cho danh sách phát */
+        .playList {
+            position:relative;
+            right: 370px;
+            max-width: 300px; /* Đặt chiều rộng tối đa của danh sách phát */
+            margin: 20px auto; /* Canh giữa danh sách phát */
+            padding: 10px;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Style cho mỗi mục danh sách */
+        .playList li {
+            list-style: none; /* Ẩn dấu chấm liệt kê */
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .playList img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%; /* Bo góc hình ảnh thành hình tròn */
+            object-fit: cover; /* Đảm bảo hình ảnh không bị biến đổ */
+        }
+
+        .playList a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            flex-grow: 1; /* Mở rộng phần tử để chiếm đủ không gian */
+        }
+
+        .playList button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-left: 10px;
+        }
+
+        .playList button:hover {
+            background-color: #c0392b;
+        }
+
+</style>
