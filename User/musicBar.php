@@ -83,10 +83,10 @@
             var currentSongAuthor = document.getElementById('currentSongAuthor');
             var currentSongImage = document.getElementById('currentSongImage');
             
-            // // Cập nhật thông tin bài hát đang phát lên phần "Now Playing"
-            // var queueSongTitle = document.getElementById('queueSongTitle');
-            // var queueSongAuthor = document.getElementById('queueSongAuthor');
-            // var queueSongImage = document.getElementById('queueSongImage');
+            // Cập nhật thông tin bài hát đang phát lên phần "Now Playing"
+            var queueSongTitle = document.getElementById('queueSongTitle');
+            var queueSongAuthor = document.getElementById('queueSongAuthor');
+            var queueSongImage = document.getElementById('queueSongImage');
             
             currentSongTitle.innerText = "Bài hát: " + currentSong.title;
             currentSongAuthor.innerText = "Tác giả: " + currentSong.author;

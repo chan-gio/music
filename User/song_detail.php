@@ -158,6 +158,7 @@
                     if (index !== -1) {
                         currentSongIndex = index;
                         playCurrentSong();
+                        increaseSongView(<?php echo $id; ?>); // Gọi hàm để tăng view của bài hát
                     }
                 });
 
@@ -214,6 +215,32 @@
         }
         ?>
     });
+
+    // Hàm xử lý việc tăng view cho bài hát
+async function increaseSongView(songId) {
+    try {
+        const response = await fetch(`./actions/increase_view.php?id=${songId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        if (data.success) {
+            console.log('Lượt xem của bài hát đã được tăng lên.');
+        } else {
+            console.error('Có lỗi xảy ra khi tăng lượt xem của bài hát.');
+        }
+    } catch (error) {
+        console.error('Error increasing song view:', error);
+    }
+}
+
 </script>
 
 

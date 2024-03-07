@@ -9,7 +9,7 @@
 
 <body>
 
-    <div style="display: flex;height: 792px;">
+    <div style="display: flex;height: 792px;overflow-y: scroll;overflow-x: none;">
         <?php
         session_start();
         if (!isset($_SESSION['uid'])) {
@@ -109,7 +109,7 @@
     <div>
     <div>    
     <!-- Thêm thanh trạng thái thời gian vào đây -->
-            <input type="range" id="progressBar" min="0" value="0" step="1" style = "    width: 700px;">
+            <input type="range" id="progressBar" min="0" value="0" step="1" style = " width: 700px;">
         
         <!-- Thêm phần tử hiển thị thời gian -->
             <div class="musicprogress" style=" display: flex;
@@ -141,7 +141,7 @@
         <img src="../images/logo/loop.png">
     </button>
     <a href="index.php?sort=queue">
-                <i class="fa-solid fa-shirt fa fa-2x"></i>
+                <i class=""></i>
                 <span class="nav-text">
                     Queue
                 </span>

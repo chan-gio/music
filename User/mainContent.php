@@ -214,8 +214,6 @@
             left: 200px;
             position: relative;
             top: 13px;
-            overflow-y: scroll;
-            overflow-x: none;
         }
         .pAlbum {
             
