@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($check) or die($conn->error);
     if ($result->num_rows > 0) {
         $_SESSION["artist_edit_error"] = "Tên ca sĩ: $aname đã tồn tại!";
-        header("Location:../admin.php?manage=Artist_edit&aid=$aid");
+        header("Location:../index.php?manage=Artist_edit&aid=$aid");
         exit();
     }
 
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $conn->query($sql) or die($conn->error);
         } else {
             $_SESSION["artist_edit_error"] = "Đã có lỗi xảy ra khi tải ảnh lên. Vui lòng thử lại!";
-            header("Location:../admin.php?manage=Artist_edit");
+            header("Location:../index.php?manage=Artist_edit");
             exit();
         }
     }
@@ -43,12 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 
     $_SESSION["artist_edit_error"] = "Sửa ca sĩ thành công!";
-    header("Location:../admin.php?manage=artists");
+    header("Location:../index.php?manage=artists");
     exit();
 } else {
     // Nếu không có dữ liệu được gửi từ form POST, chuyển hướng trở lại trang trước
     $_SESSION["artist_edit_error"] = "Bạn cần nhập đủ dữ liệu!";
-    header("Location:../admin.php?manage=Artist_edit&=aid=$aid");
+    header("Location:../index.php?manage=Artist_edit&=aid=$aid");
     exit();
 }
 ?>

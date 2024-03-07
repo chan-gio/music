@@ -44,8 +44,8 @@ $result = $conn->query($query);
     <h2 style="margin-top:10px">Quản lý bài hát</h2>
     <font color=red><?php echo $_SESSION["song_edit_error"]; ?></font><br>
     <font color=red><?php echo $_SESSION["song_add_error"]; ?></font><br>
-    <button type="button" class="btn btn-primary"><a class="button-Add" href="admin.php?manage=Song_add">Thêm bài hát</a></button>
-    <button type="button" style="background-color: red;" class="btn btn-primary"><a class="button-Add" href="admin.php?manage=Song_trashcan">Thùng rác</a></button>
+    <button type="button" class="btn btn-primary"><a class="button-Add" href="index.php?manage=Song_add">Thêm bài hát</a></button>
+    <button type="button" style="background-color: red;" class="btn btn-primary"><a class="button-Add" href="index.php?manage=Song_trashcan">Thùng rác</a></button>
 
     <table class="table table-striped" style="background-color:white;border:1px solid #ccc;margin-top:30px;padding:20px">
         <thead>
@@ -78,7 +78,7 @@ $result = $conn->query($query);
                     </td>';
             echo "<td>{$row['sview']}</td>";
             echo "<td>Khả dụng</td>";
-            echo "<td><button type='button' class='btn btn-warning'><a class='button-edit' href='admin.php?manage=Song_edit&sid={$row['sid']}'>Chỉnh sửa</a></button></td>";
+            echo "<td><button type='button' class='btn btn-warning'><a class='button-edit' href='index.php?manage=Song_edit&sid={$row['sid']}'>Chỉnh sửa</a></button></td>";
             echo '<td><button type="button" class="btn btn-danger"><a class="button-delete" onclick="return confirm(\'Bạn có chắc muốn xóa bài hát: '. $row["sname"] .' không?\')" href="./actions/Song_delete.php?sid=' . $row["sid"] . '">Xóa</a></button></td>';
             echo "</tr>";
         }

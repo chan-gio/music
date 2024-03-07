@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result=$conn->query($check) or die($conn->error);
 	if ($result->num_rows>0){
 		$_SESSION["artist_add_error"]="Ca sĩ: $aname đã tồn tại!";
-		header("Location:admin.php?manage=Artist_add");
+		header("Location:index.php?manage=Artist_add");
         exit();
     }
 
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
         } else {
             $_SESSION["artist_add_error"] = "Đã có lỗi xảy ra khi tải ảnh lên. Vui lòng thử lại!";
-            header("Location: admin.php?manage=Artist_add");
+            header("Location: index.php?manage=Artist_add");
             exit();
         }
 
@@ -42,22 +42,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sqlinsert = "INSERT INTO artists (aname, aimage, aview, astatus) VALUES ('$aname', '$new_image_name', 0, $astatus)";
         if ($conn->query($sqlinsert) === TRUE) {
             $_SESSION["artist_add_error"] = "Thêm mới ca sĩ thành công!";
-            header("Location:admin.php?manage=artists");
+            header("Location:index.php?manage=artists");
             exit();
         } else {
             $_SESSION["artist_add_error"] = "Lỗi khi thêm ca sĩ: " . $conn->error;
-            header("Location:admin.php?manage=Artist_add");
+            header("Location:index.php?manage=Artist_add");
             exit();
         }
        
     } else {
         $_SESSION["artist_add_error"] = "Bạn cần nhập đủ dữ liệu!";
-        header("Location:admin.php?manage=Artist_add");
+        header("Location:index.php?manage=Artist_add");
         exit();
     }
 } else {
     // Nếu không có dữ liệu được gửi từ form POST, chuyển hướng trở lại trang Product_add.php
-    header("Location: admin.php?manage=Artist_add");
+    header("Location: index.php?manage=Artist_add");
     exit();
 }
 ?>

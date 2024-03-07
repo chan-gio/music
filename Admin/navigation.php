@@ -16,7 +16,7 @@
     </div>
     <ul>
         <li>
-            <a href="admin.php?manage=songs">
+            <a href="index.php?manage=songs">
                 <i class="fa fa-music"></i>
                 <span class="nav-text">
                     Quản lý bài hát
@@ -25,7 +25,7 @@
         </li>
         
         <li>
-            <a href="admin.php?manage=artists">
+            <a href="index.php?manage=artists">
                 <i class="fa-solid fa-user fa"></i>
                 <span class="nav-text">
                     Quản lý ca sĩ
@@ -34,7 +34,7 @@
         </li>
 
         <li>
-            <a href="admin.php?manage=users">
+            <a href="index.php?manage=users">
                 <i class="fa-solid fa-users fa fa-2x"></i>
                 <span class="nav-text">
                     Quản lý người dùng
@@ -43,10 +43,18 @@
         </li>
 
         <li>
-            <a href="admin.php?manage=Album">
+            <a href="index.php?manage=Album">
             <i class="fa-solid fa-compact-disc fa "></i>
                 <span class="nav-text">
                     Quản lý album
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="index.php?manage=Notify">
+            <i class="fa fa-bell"></i>
+                <span class="nav-text">
+                    Quản lý thông báo
                 </span>
             </a>
         </li>

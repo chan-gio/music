@@ -9,6 +9,6 @@
         $sql = "Update albums set alstatus = 1 where alid=".$alid;
         $conn->query($sql);
         $_SESSION["album_edit_error"]="Khôi phục album thành công!";
-        header("Location:../admin.php?manage=Album_trashcan");
+        header("Location:../index.php?manage=Album_trashcan");
     }
 ?>

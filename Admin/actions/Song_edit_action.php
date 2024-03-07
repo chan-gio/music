@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $selectedArtists = explode(',', $_POST['selectedArtists']);
     } else {
         $_SESSION["song_edit_error"] = "Bạn cần chọn ít nhất một ca sĩ!";
-        header("Location:../admin.php?manage=Song_edit&sid=$sid");
+        header("Location:../index.php?manage=Song_edit&sid=$sid");
         exit();
     }
 
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($check) or die($conn->error);
     if ($result->num_rows > 0) {
         $_SESSION["song_edit_error"] = "Bài hát: $sname đã tồn tại!";
-        header("Location:../admin.php?manage=Song_edit&sid=$sid");
+        header("Location:../index.php?manage=Song_edit&sid=$sid");
         exit();
     }
 
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sqlInsertSongArtist = "INSERT INTO songs_artists (sid, aid) VALUES ('$sid', '$aid')";
         if ($conn->query($sqlInsertSongArtist) !== TRUE) {
             $_SESSION["song_add_error"] = "Lỗi khi thêm dữ liệu vào bảng songs_artists: " . $conn->error;
-            header("Location:../admin.php?manage=songs");
+            header("Location:../index.php?manage=songs");
             exit();
         }
     }
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $conn->query($sql) or die($conn->error);
         } else {
             $_SESSION["song_edit_error"] = "Đã có lỗi xảy ra khi tải ảnh lên. Vui lòng thử lại!";
-            header("Location:../admin.php?manage=Song_edit&sid=$sid");
+            header("Location:../index.php?manage=Song_edit&sid=$sid");
             exit();
         }
     }
@@ -77,17 +77,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $conn->query($sql) or die($conn->error);
         } else {
             $_SESSION["song_edit_error"] = "Đã có lỗi xảy ra khi tải file bài hát lên. Vui lòng thử lại!";
-            header("Location:../admin.php?manage=Song_add");
+            header("Location:../index.php?manage=Song_add");
             exit();
         }
     }
 
     $_SESSION["song_edit_error"] = "Sửa bài hát thành công!";
-    header("Location:../admin.php?manage=songs");
+    header("Location:../index.php?manage=songs");
     exit();
 } else {
     // Nếu không có dữ liệu được gửi từ form POST, chuyển hướng trở lại trang trước
     $_SESSION["song_edit_error"] = "Bạn cần nhập đủ dữ liệu!";
-    header("Location:../admin.php?manage=Song_edit&sid=$sid");
+    header("Location:../index.php?manage=Song_edit&sid=$sid");
     exit();
 }

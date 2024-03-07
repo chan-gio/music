@@ -6,7 +6,7 @@ if (isset($_POST['selectedArtists']) && !empty($_POST['selectedArtists'])) {
     $selectedArtists = explode(',', $_POST['selectedArtists']);
 } else {
     $_SESSION["song_add_error"] = "Bạn cần chọn ít nhất một ca sĩ!";
-    header("Location:../admin.php?manage=Song_add");
+    header("Location:../index.php?manage=Song_add");
     exit();
 }
 
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($check) or die($conn->error);
     if ($result->num_rows > 0) {
         $_SESSION["song_add_error"] = "Bài hát: $sname đã tồn tại!";
-        header("Location:../admin.php?manage=Song_add");
+        header("Location:../index.php?manage=Song_add");
         exit();
     }
 
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (move_uploaded_file($_FILES["txtsimage"]["tmp_name"], $target_file)) {
         } else {
             $_SESSION["song_add_error"] = "" . $_FILES["txtsimage"]["error"];
-            header("Location:../admin.php?manage=Song_add");
+            header("Location:../index.php?manage=Song_add");
             exit();
         }
 
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (move_uploaded_file($_FILES["txtssrc"]["tmp_name"], $target_file)) {
         } else {
             $_SESSION["song_add_error"] = "Đã có lỗi xảy ra khi tải file bài hát lên. Vui lòng thử lại!";
-            header("Location:../admin.php?manage=Song_add");
+            header("Location:../index.php?manage=Song_add");
             exit();
         }
 
@@ -72,25 +72,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $sqlInsertSongArtist = "INSERT INTO songs_artists (sid, aid) VALUES ('$sid', '$aid')";
                 if ($conn->query($sqlInsertSongArtist) !== TRUE) {
                     $_SESSION["song_add_error"] = "Lỗi khi thêm dữ liệu vào bảng songs_artists: " . $conn->error;
-                    header("Location:../admin.php?manage=Song_add");
+                    header("Location:../index.php?manage=Song_add");
                     exit();
                 }
             }
             $_SESSION["song_add_error"] = "Thêm mới bài hát thành công!";
-            header("Location:../admin.php?manage=songs");
+            header("Location:../index.php?manage=songs");
             exit();
         } else {
             $_SESSION["song_add_error"] = "Lỗi khi thêm bài hát: " . $conn->error;
-            header("Location:../admin.php?manage=Song_add");
+            header("Location:../index.php?manage=Song_add");
             exit();
         }
     } else {
         $_SESSION["song_error"] = "Bạn cần nhập đủ dữ liệu!";
-        header("Location:../admin.php?manage=songs");
+        header("Location:../index.php?manage=songs");
         exit();
     }
 } else {
     // Nếu không có dữ liệu được gửi từ form POST, chuyển hướng trở lại trang Product_add.php
-    header("Location:../admin.php?manage=Song_add");
+    header("Location:../index.php?manage=Song_add");
     exit();
 }
