@@ -130,31 +130,34 @@
             }
             playCurrentSong();
         });
-        // Lắng nghe sự kiện play của đối tượng Audio
+       // Lắng nghe sự kiện play của đối tượng Audio
         var playImgSrc = '../images/logo/play.png';  // Đường dẫn hình ảnh cho trạng thái phát
         var pauseImgSrc = '../images/logo/Pause.png';
+        var playPauseButtonImg = document.createElement('img'); // Tạo một thẻ hình ảnh để sử dụng cho nút play/pause
+        playPauseButtonImg.src = playImgSrc; // Đặt hình ảnh ban đầu của nút là hình ảnh play
 
         audioPlayer.addEventListener('play', function() {
             // Đặt biến isPlaying thành true khi bài hát được phát
             isPlaying = true;
 
             // Thay đổi nội dung của nút từ văn bản thành hình ảnh dựa trên trạng thái hiện tại
-            var imgSrc = isPlaying ? pauseImgSrc : playImgSrc;
-            playPauseButton.innerHTML = '<img src="' + imgSrc + '" alt="Phát/Dừng">';
+            playPauseButton.innerHTML = ''; // Xóa nội dung hiện tại của nút play/pause
+            playPauseButton.appendChild(playPauseButtonImg); // Thêm thẻ hình ảnh vào nút play/pause
+            playPauseButtonImg.src = pauseImgSrc; // Đặt hình ảnh của nút thành hình ảnh pause\
+            playPauseButtonImg.style.height = '10px'; // Đặt chiều cao của hình ảnh nút play
+
         });
 
-
         // Lắng nghe sự kiện pause của đối tượng Audio
-        var playImgSrc = '../images/logo/play.png';
-        var pauseImgSrc = '../images/logo/Pause.png';
         audioPlayer.addEventListener('pause', function() {
             // Đặt biến isPlaying thành false khi bài hát dừng
             isPlaying = false;
             // Đổi nút phát/dừng thành nút phát
-            var imgSrc = isPlaying ? pauseImgSrc : playImgSrc;
-            layPauseButton.innerHTML = '<img src="' + imgSrc + '" alt="Phát/Dừng">';
-
+            playPauseButtonImg.src = playImgSrc; // Đặt lại hình ảnh của nút thành hình ảnh play
         });
+
+
+
          // Lắng nghe sự kiện input của thanh trạng thái thời gian để tua
         var progressBar = document.getElementById('progressBar');
         progressBar.addEventListener('input', function() {
