@@ -8,5 +8,5 @@
     $sql = "Update albums set alstatus = 0 where alid=".$alid;
     $conn->query($sql);
     $_SESSION["album_edit_error"]="Xóa album thành công!";
-    header("Location:../admin.php?manage=Album");
+    header("Location:../index.php?manage=Album");
 ?>

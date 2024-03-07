@@ -9,6 +9,6 @@
         $sql = "Update artists set astatus = 1 where aid=".$aid;
         $conn->query($sql);
         $_SESSION["artist_edit_error"]="Khôi phục ca sĩ thành công!";
-        header("Location:../admin.php?manage=Artist_trashcan");
+        header("Location:../index.php?manage=Artist_trashcan");
     }
 ?>

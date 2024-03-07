@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['adname'] = $ad['adname'];
 
         // Đăng nhập thành công, chuyển hướng đến trang khác
-        header("Location:../admin.php");
+        header("Location:../index.php");
         exit();
     } else {
         // Đăng nhập thất bại, chuyển hướng trở lại trang đăng nhập với thông báo lỗi

@@ -8,5 +8,5 @@
     $sql = "Update songs set sstatus = 0 where sid=".$sid;
     $conn->query($sql);
     $_SESSION["song_edit_error"]="Xóa bài hát thành công!";
-    header("Location:../admin.php?manage=songs");
+    header("Location:../index.php?manage=songs");
 ?>

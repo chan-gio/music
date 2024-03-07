@@ -44,7 +44,7 @@ $result = $conn->query($query);
     <h2 style="margin-top:10px">Bài hát đã xóa</h2>
     <font color=red><?php echo $_SESSION["song_edit_error"]; ?></font><br>
     <font color=red><?php echo $_SESSION["song_add_error"]; ?></font><br>
-    <button type="button" style="background-color: red;" class="btn btn-primary"><a class="button-Add" href="admin.php?manage=songs">Trở về</a></button>
+    <button type="button" style="background-color: red;" class="btn btn-primary"><a class="button-Add" href="index.php?manage=songs">Trở về</a></button>
 
     <table class="table table-striped" style="background-color:white;border:1px solid #ccc;margin-top:30px;padding:20px">
         <thead>
@@ -76,7 +76,7 @@ $result = $conn->query($query);
                     </td>';
 
             echo "<td>Đã xóa</td>";
-            echo "<td><button type='button' class='btn btn-warning'><a class='button-edit' href='admin.php?manage=Song_edit&sid={$row['sid']}'>Chỉnh sửa</a></button></td>";
+            echo "<td><button type='button' class='btn btn-warning'><a class='button-edit' href='index.php?manage=Song_edit&sid={$row['sid']}'>Chỉnh sửa</a></button></td>";
             echo '<td><button type="button" class="btn btn-warning"><a class="button-edit" onclick="return confirm(\'Bạn có chắc muốn khôi phục bài hát: '. $row["sname"] .' không?\')" href="./actions/Song_trashcan_action.php?sid=' . $row["sid"] . '">Khôi phục</a></button></td>';
             echo "</tr>";
         }
