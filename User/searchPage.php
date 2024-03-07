@@ -1,20 +1,26 @@
 <!-- HTML -->
-<input class="searchBar" type="search" placeholder="Search" aria-label="Search" onkeyup="search(this.value)">
-<div id="songResults" style="display:none">
-    <h2>Songs</h2>
-    <div id="songListResults" class="resultList"></div>
-</div>
-<div id="albumResults" style="display:none">
-    <h2>Albums</h2>
-    <div id="albumListResults" class="resultList"></div>
-</div>
-<div id="podcastResults" style="display:none">
-    <h2>Podcasts</h2>
-    <div id="podcastListResults" class="resultList"></div>
-</div>
-<div id="artistResults" style="display:none">
-    <h2>Artists</h2>
-    <div id="artistListResults" class="resultList"></div>
+<div>
+    <div>
+        <input class="searchBar" type="search" placeholder="Search" aria-label="Search" onkeyup="search(this.value)">
+    </div>
+    <div id="searchResults" style="overflow-y: auto; max-height: 750px;">
+        <div id="songResults" style="display:none">
+            <h2>Songs</h2>
+            <div id="songListResults" class="resultList"></div>
+        </div>
+        <div id="albumResults" style="display:none">
+            <h2>Albums</h2>
+            <div id="albumListResults" class="resultList"></div>
+        </div>
+        <div id="podcastResults" style="display:none">
+            <h2>Podcasts</h2>
+            <div id="podcastListResults" class="resultList"></div>
+        </div>
+        <div id="artistResults" style="display:none">
+            <h2>Artists</h2>
+            <div id="artistListResults" class="resultList"></div>
+        </div>
+    </div>
 </div>
 
 <!-- JavaScript -->
@@ -72,73 +78,95 @@
 
                         // Tạo và thêm thông tin vào danh sách phù hợp
                         switch (result.type) {
+
                             case 'song':
-                                document.getElementById("songResults").style.display = "block";
-                                var imageElement = document.createElement("img");
-                                imageElement.src = "../images/" + result.image;
-                                imageElement.alt = result.name;
-                                resultElement.appendChild(imageElement);
+    document.getElementById("songResults").style.display = "block";
+    var resultElement = document.createElement("div");
+    resultElement.classList.add("resultItem");
 
-                                var songItem = document.createElement("span");
-                                songItem.textContent = result.name + " by: " + result.artist;
-                                resultElement.appendChild(songItem);
+    var imageElement = document.createElement("img");
+    imageElement.src = "../images/" + result.image;
+    imageElement.alt = result.name;
+    resultElement.appendChild(imageElement);
 
-                                // Thêm sự kiện click để điều hướng người dùng đến trang chi tiết bài hát
-                                addClickEvent(resultElement, result.id, 'song');
+    var songItem = document.createElement("p");
+    songItem.textContent = result.name;
+    resultElement.appendChild(songItem);
 
-                                songListResults.appendChild(resultElement);
-                                break;
+    var artistItem = document.createElement("p");
+    artistItem.textContent = "by: " + result.artist;
+    resultElement.appendChild(artistItem);
 
-                            case 'album':
-                                document.getElementById("albumResults").style.display = "block";
-                                var imageElement = document.createElement("img");
-                                imageElement.src = "../albums/" + result.image;
-                                imageElement.alt = result.name;
-                                resultElement.appendChild(imageElement);
+    addClickEvent(resultElement, result.id, 'song');
 
-                                var albumItem = document.createElement("span");
-                                albumItem.textContent = result.name + " by: " + result.artist;
-                                resultElement.appendChild(albumItem);
+    songListResults.appendChild(resultElement);
+    break;
 
-                                // Thêm sự kiện click để điều hướng người dùng đến trang chi tiết album
-                                addClickEvent(resultElement, result.id, 'album');
 
-                                albumListResults.appendChild(resultElement);
-                                break;
+    case 'album':
+    document.getElementById("albumResults").style.display = "block";
+    var resultElement = document.createElement("div");
+    resultElement.classList.add("resultItem");
 
-                            // case 'podcast':
-                            //     document.getElementById("podcastResults").style.display = "block";
-                            //     var imageElement = document.createElement("img");
-                            //     imageElement.src = "podcasts/" + result.image;
-                            //     imageElement.alt = result.name;
-                            //     resultElement.appendChild(imageElement);
+    var imageElement = document.createElement("img");
+    imageElement.src = "../albums/" + result.image;
+    imageElement.alt = result.name;
+    resultElement.appendChild(imageElement);
 
-                            //     var podcastItem = document.createElement("span");
-                            //     podcastItem.textContent = result.name + " by: " + result.artist;
-                            //     resultElement.appendChild(podcastItem);
+    var albumItem = document.createElement("p");
+    albumItem.textContent = result.name;
+    resultElement.appendChild(albumItem);
 
-                            //     // Thêm sự kiện click để điều hướng người dùng đến trang chi tiết podcast
-                            //     addClickEvent(resultElement, result.id, 'podcast');
+    var artistItem = document.createElement("p");
+    artistItem.textContent = "by: " + result.artist;
+    resultElement.appendChild(artistItem);
 
-                            //     podcastListResults.appendChild(resultElement);
-                            //     break;
+    addClickEvent(resultElement, result.id, 'album');
 
-                            case 'artist':
-                                document.getElementById("artistResults").style.display = "block";
-                                var imageElement = document.createElement("img");
-                                imageElement.src = "../artists/" + result.image;
-                                imageElement.alt = result.name;
-                                resultElement.appendChild(imageElement);
+    albumListResults.appendChild(resultElement);
+    break;
 
-                                var artistItem = document.createElement("span");
-                                artistItem.textContent = result.name;
-                                resultElement.appendChild(artistItem);
+// case 'podcast':
+//     document.getElementById("podcastResults").style.display = "block";
+//     var resultElement = document.createElement("div");
+//     resultElement.classList.add("resultItem");
 
-                                // Thêm sự kiện click để điều hướng người dùng đến trang chi tiết nghệ sĩ
-                                addClickEvent(resultElement, result.id, 'artist');
+//     var imageElement = document.createElement("img");
+//     imageElement.src = "podcasts/" + result.image;
+//     imageElement.alt = result.name;
+//     resultElement.appendChild(imageElement);
 
-                                artistListResults.appendChild(resultElement);
-                                break;
+//     var podcastItem = document.createElement("p");
+//     podcastItem.textContent = result.name;
+//     resultElement.appendChild(podcastItem);
+
+//     var artistItem = document.createElement("p");
+//     artistItem.textContent = "by: " + result.artist;
+//     resultElement.appendChild(artistItem);
+
+//     addClickEvent(resultElement, result.id, 'podcast');
+
+//     podcastListResults.appendChild(resultElement);
+//     break;
+
+case 'artist':
+    document.getElementById("artistResults").style.display = "block";
+    var resultElement = document.createElement("div");
+    resultElement.classList.add("resultItem");
+
+    var imageElement = document.createElement("img");
+    imageElement.src = "../artists/" + result.image;
+    imageElement.alt = result.name;
+    resultElement.appendChild(imageElement);
+
+    var artistItem = document.createElement("p");
+    artistItem.textContent = result.name;
+    resultElement.appendChild(artistItem);
+
+    addClickEvent(resultElement, result.id, 'artist');
+
+    artistListResults.appendChild(resultElement);
+    break;
 
                             default:
                                 break;
@@ -163,7 +191,7 @@
 
 /* Search Bar Styles */
 .searchBar {
-    width: 30%;
+    width: 100%;
     height: 10px;
     padding: 10px;
     border: none;
@@ -196,13 +224,12 @@ h2 {
     flex-wrap: wrap;
     gap: 20px;
 }
-.resultList img{
-    max-width: 50%;
-    width: 100px;
-    Height: 100px;
+
+.resultItem {
+    width: 150px;
+    text-align: center;
 }
 
-/* Result Item Styles */
 .resultItem {
     width: 150px;
     text-align: center;
@@ -216,27 +243,8 @@ h2 {
 .resultItem p {
     margin-top: 5px;
     font-size: 14px;
-    color: #b3b3b3;
-}
-
-/* Example: Specific styling for song results */
-#songListResults {
-    /* Add specific styles for song results if needed */
-}
-
-/* Example: Specific styling for album results */
-#albumListResults {
-    /* Add specific styles for album results if needed */
-}
-
-/* Example: Specific styling for podcast results */
-#podcastListResults {
-    /* Add specific styles for podcast results if needed */
-}
-
-/* Example: Specific styling for artist results */
-#artistListResults {
-    /* Add specific styles for artist results if needed */
+    color: black;
+    line-height: 1.2; /* Thêm dòng này để tạo khoảng cách giữa các dòng */
 }
 
 </style>

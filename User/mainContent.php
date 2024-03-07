@@ -30,6 +30,7 @@
                 JOIN songs e ON e.sid = d.sid
                 JOIN songs_artists b ON e.sid = b.sid
                 JOIN artists c ON c.aid = b.aid
+                where a.alstatus=1
                 GROUP BY a.alid, a.alname
                 ORDER BY total_views DESC 
                 LIMIT 0,10;";
@@ -54,6 +55,7 @@
             
             <?php
              $sql1 = "SELECT * FROM artists
+             where astatus=1
                     ORDER BY aview DESC LIMIT 0,10";
              $result1 = $conn->query($sql1);
 

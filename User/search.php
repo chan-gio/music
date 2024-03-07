@@ -10,7 +10,7 @@ $searchQuery = "SELECT 'song' AS type, s.sid AS id, s.sname AS name, GROUP_CONCA
                 FROM songs s
                 JOIN songs_artists b ON s.sid = b.sid
                 JOIN artists a ON b.aid = a.aid
-                WHERE s.sname LIKE '%$query%'
+                WHERE s.sname LIKE '%$query%' AND s.sstatus=1
                 GROUP BY s.sid, s.sname
 
                 UNION
@@ -21,14 +21,15 @@ $searchQuery = "SELECT 'song' AS type, s.sid AS id, s.sname AS name, GROUP_CONCA
                 JOIN songs e ON e.sid = d.sid
                 JOIN songs_artists b ON e.sid = b.sid
                 JOIN artists c ON c.aid = b.aid
-                WHERE al.alname LIKE '%$query%'
+                WHERE al.alname LIKE '%$query%' AND al.alstatus=1
                 GROUP BY al.alid, al.alname
                 
                 UNION
 
                 SELECT 'artist' AS type, aid AS id, aname AS artist, '' AS sth, aimage AS image, '' AS link
                 FROM artists 
-                WHERE aname LIKE '%$query%' LIMIT 0, 25";
+                WHERE aname LIKE '%$query%' AND astatus=1
+                LIMIT 0, 25";
 $searchResult = $conn->query($searchQuery);
 
 // Xử lý kết quả tìm kiếm
