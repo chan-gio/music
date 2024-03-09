@@ -39,7 +39,6 @@ $result = $conn->query($query);
                 <th scope="col">Mã người dùng</th>
                 <th scope="col">Email</th>
                 <th scope="col">Tên người dùng</th>
-                <th scope="col">Mật khẩu</th>
                 <th scope="col">Tình trạng</th>
                 <th scope="col">Khóa</th>
             </tr>
@@ -51,7 +50,6 @@ $result = $conn->query($query);
                 echo "<td>{$row['uid']}</td>";
                 echo "<td>{$row['uemail']}</td>";
                 echo "<td>{$row['uname']}</td>";
-                echo "<td>{$row['upassword']}</td>";
 
                 $statusDisplay = ($row['ustatus'] == 0) ? "Khóa" : "Hoạt động";
                 echo "<td>{$statusDisplay}</td>";

@@ -25,7 +25,7 @@ if (!isset($_SESSION["artist_add_error"])) {
 
 <body style="margin-left:100px;background-color: #f1efef">
     <h2 style="margin-top:10px">Thêm ca sĩ mới</h2>
-    <form class="row g-3" action="Artist_add_action.php" method="POST" enctype="multipart/form-data" style="background-color:white;border:1px solid #ccc;margin-top:30px;padding:20px;border-radius:10px;">
+    <form class="row g-3" action="./actions/Artist_add_action.php" method="POST" enctype="multipart/form-data" style="background-color:white;border:1px solid #ccc;margin-top:30px;padding:20px;border-radius:10px;">
         <div class="col-md-12">
             <label for="pname" class="form-label">Tên ca sĩ:</label>
             <input type="text" class="form-control" id="sname" name="txtaname" placeholder="" required>
