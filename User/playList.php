@@ -3,6 +3,7 @@
         <!-- Danh sách bài hát sẽ được thêm vào đây bằng JavaScript -->
     </ul>
     <button id="addPlayList">Thêm Play List</button>
+
 </div>
 
 <script>
@@ -80,6 +81,17 @@
 
                 // Thêm nút "Xóa" vào listItem
                 listItem.appendChild(deleteButton);
+                
+                var editButton = document.createElement('button');
+                editButton.innerText = 'Sửa';
+                editButton.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    window.location.href = "./actions/edit_playlist.php?pid=<?php echo $plid; ?>";
+                });
+
+                // Thêm nút "Xóa" vào listItem
+                listItem.appendChild(editButton);
+
 
                 // Thêm listItem vào danh sách phát
                 playList.appendChild(listItem);
