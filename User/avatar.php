@@ -7,57 +7,32 @@
 ?>
 
 <body>
-<div class="user-info">
-    <h2>Username: </h2>
-    <h3><?php echo $row['uname'] ?></h3>
+<div style="border:2px solid #333;position: relative; height: 200px;width: 100%;border-radius: 10px;">
+    <div class="user-info" style="left: 400px;">
+        <h2 >Username: </h2>
+        <h3 style="position: relative; bottom: 20px; font-size: 40px;"><?php echo $row['uname'] ?></h3>
+    </div>
+    <div class="user-info" style="bottom: 50px; left: 400px;">
+        <h2>Email: </h2>
+        <h3 style="position: relative; top: 6px;"><?php echo $row['uemail'] ?></h3>
+    </div>
+        <button class="logout" onclick="confirmLogout()">Log out</button>
 </div>
-<div class="user-info">
-    <h2>Email: </h2>
-    <h3><?php echo $row['uemail'] ?></h3>
-</div>
-    <button class="logout" onclick="confirmLogout()">Log out</button>
-
 </body>
 
 <style>
       .user-info {
-        background-color: #f5f5f5;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        margin-bottom: 20px;
+        max-width: 270px;
+        width:100%;
         padding: 15px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Style for the username heading */
-    .user-info h2 {
-        color: #3498db;
-        font-size: 22px;
-        margin-bottom: 5px;
-    }
-
-    /* Style for the username data */
-    .user-info h3 {
-        color: #555;
-        font-size: 18px;
-    }
-
-    /* Style for the email heading */
-    .user-info h2 + div h2 {
-        color: #27ae60;
-        font-size: 22px;
-        margin-top: 15px; /* Adjust spacing between sections */
-        margin-bottom: 5px;
-    }
-
-    /* Style for the email data */
-    .user-info h2 + div h3 {
-        color: #555;
-        font-size: 18px;
+        font-size: 19px;
+        position: relative;
+        display: flex;
     }
     .logout {
+        bottom: 150px;
         position: relative;
-        left: 700px;
+        left: 1200px;
         font-size: 24px;
         text-align: center;
         cursor: pointer;

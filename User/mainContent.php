@@ -44,7 +44,7 @@
                 $alname = $row5["alname"];
                 $alimage = "../albums/" . $row5["alimage"];
                 echo "<a href='index.php?sort=album_detail&id=$alid'><img src='$alimage' alt='$alname'></a><br>";
-                echo "<span style='top: 60px;right: 95px; position:relative;font-size: 15px;font-weight: 400;width:80px;'>$alname</span>";
+                echo "<span style='top: 100px;right: 95px; position:relative;font-size: 15px;font-weight: 400;width:80px;'>$alname</span>";
             }
         }
     ?>

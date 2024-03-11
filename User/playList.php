@@ -79,6 +79,15 @@
                     removePlaylist(<?php echo $plid; ?>); // Gọi hàm xóa playlist với pid tương ứng
                 });
 
+                // Thêm CSS cho nút deleteButton
+                deleteButton.style.backgroundColor = 'red'; // Đặt màu nền là đỏ
+                deleteButton.style.color = 'white'; // Đặt màu chữ là trắng
+                deleteButton.style.border = 'none'; // Loại bỏ đường viền
+
+                // Thêm nút vào DOM
+                document.body.appendChild(deleteButton);
+
+
                 // Thêm nút "Xóa" vào listItem
                 listItem.appendChild(deleteButton);
                 
@@ -88,6 +97,14 @@
                     event.stopPropagation();
                     window.location.href = "./actions/edit_playlist.php?pid=<?php echo $plid; ?>";
                 });
+
+                // Thêm CSS cho nút editButton
+                editButton.style.backgroundColor = 'blue'; // Đặt màu nền là xanh
+                editButton.style.color = 'white'; // Đặt màu chữ là trắng
+                editButton.style.border = 'none'; // Loại bỏ đường viền
+
+                // Thêm nút vào DOM
+                document.body.appendChild(editButton);
 
                 // Thêm nút "Xóa" vào listItem
                 listItem.appendChild(editButton);
