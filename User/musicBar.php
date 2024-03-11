@@ -214,15 +214,13 @@
         // Lắng nghe sự kiện click của nút lặp lại
         var repeatButton = document.getElementById('repeatButton');
         repeatButton.addEventListener('click', function() {
-            // Đảo ngược trạng thái lặp lại
-            audioPlayer.loop = !audioPlayer.loop;
-            // Cập nhật văn bản của nút
-            
+        // Đảo ngược trạng thái lặp lại
+        audioPlayer.loop = !audioPlayer.loop;
 
-            var imageSrc = audioPlayer.loop ? '../images/logo/loop.png' : '../images/logo/loop.png';
-            document.getElementById('yourImageElementId').src = imageSrc;
-            repeatButton.classList.toggle('active');
-        });
+        // Thêm thông báo
+        var alertMessage = audioPlayer.loop ? 'Lặp lại đã được bật.' : 'Lặp lại đã được tắt.';
+        alert(alertMessage);
+});
 
         // Biến để kiểm tra trạng thái của chế độ lặp lại
         var isShuffleOn = false;
@@ -245,14 +243,18 @@
         // Lắng nghe sự kiện click của nút phát ngẫu nhiên
         var shuffleButton = document.getElementById('shuffleButton');
         shuffleButton.addEventListener('click', function() {
-            isShuffleOn = !isShuffleOn; // Đảo ngược trạng thái của chế độ lặp lại
-            if (isShuffleOn) {
-                shuffleButton.style.color = 'red'; // Đổi màu của nút để chỉ ra rằng chế độ lặp lại đã được bật
-            } else {
-                shuffleButton.style.color = ''; // Xóa màu của nút
-            }
-            playRandomSong();
-        });
+        isShuffleOn = !isShuffleOn; // Đảo ngược trạng thái của chế độ lặp lại
+        
+        if (isShuffleOn) {
+            shuffleButton.style.color = 'red'; // Đổi màu của nút để chỉ ra rằng chế độ lặp lại đã được bật
+            alert("Chế độ Shuffle đã được bật!");
+        } else {
+            shuffleButton.style.color = ''; // Xóa màu của nút
+            alert("Chế độ Shuffle đã được tắt!");
+        }
+
+        playRandomSong();
+});
 
         // Lắng nghe sự kiện ended của đối tượng Audio để tự động chuyển sang bài hát tiếp theo
         audioPlayer.addEventListener('ended', function() {
@@ -320,4 +322,5 @@
     <style>
         .playing {
     display: none;
+    
 }   </style>
