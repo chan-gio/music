@@ -145,21 +145,20 @@
     });
 </script>
 <style>
-            /* Style cho danh sách phát */
         .playList {
             position:relative;
             right: 370px;
-            max-width: 300px; /* Đặt chiều rộng tối đa của danh sách phát */
-            margin: 20px auto; /* Canh giữa danh sách phát */
+            max-width: 300px; 
+            margin: 20px auto; 
             padding: 10px;
             background-color: #f8f8f8;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
 
-        /* Style cho mỗi mục danh sách */
+        
         .playList li {
-            list-style: none; /* Ẩn dấu chấm liệt kê */
+            list-style: none;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
@@ -169,15 +168,15 @@
             width: 50px;
             height: 50px;
             margin-right: 10px;
-            border-radius: 50%; /* Bo góc hình ảnh thành hình tròn */
-            object-fit: cover; /* Đảm bảo hình ảnh không bị biến đổ */
+            border-radius: 50%; 
+            object-fit: cover; 
         }
 
         .playList a {
             text-decoration: none;
             color: #333;
             font-weight: bold;
-            flex-grow: 1; /* Mở rộng phần tử để chiếm đủ không gian */
+            flex-grow: 1; 
         }
 
         .playList button {

@@ -311,7 +311,7 @@ if (!empty($songsArray)) {
     
     .artistDetail {
         position: relative;
-        right: 160px;
+        right: 250px;
         top: 120px;
         width: 440px;
         height: 252px;
@@ -325,7 +325,7 @@ if (!empty($songsArray)) {
 
     .artistDetail ul {
         list-style: none;
-        padding: 0;
+        padding: 0px;
     }
 
     .artistDetail font {

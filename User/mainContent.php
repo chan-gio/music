@@ -15,14 +15,14 @@
                 $sname = $row6["sname"];
                 $simage = "../images/" . $row6["simage"];
                 echo "<a href='index.php?sort=song_detail&id=$sid'><img src='$simage' alt='$sname'></a>";
-                echo $sname;
+                echo "<span style='left: 80px; top:-20px; position:relative;'>$sname</span>";
             }
         }
     ?>
     </div>
     </div>
     <div>
-    <p style="left: 100px; position: relative;" >Popular album</p>
+    <p style="right: 580px; top:360px; position: relative;" >Popular album</p>
     <div class = "pAlbum">
     
     <?php
@@ -44,7 +44,7 @@
                 $alname = $row5["alname"];
                 $alimage = "../albums/" . $row5["alimage"];
                 echo "<a href='index.php?sort=album_detail&id=$alid'><img src='$alimage' alt='$alname'></a><br>";
-                echo $alname;
+                echo "<span style='top: 60px;right: 95px; position:relative;font-size: 15px;font-weight: 400;width:80px;'>$alname</span>";
             }
         }
     ?>
@@ -53,9 +53,8 @@
     </div>
 </div>
 <div>
-<p style="left:190px; position:relative;top: 10px;">Popular Astist</p>
+<p style="right:250px; position:relative;top: 10px;">Popular Astist</p>
 <div class = "rightContent">
-        
         <div class="rightContent2">
             
             <?php
@@ -70,7 +69,7 @@
                     $aid = $row1["aid"];
                     $aimage = "../artists/".$row1["aimage"];
                     echo "<a href='index.php?sort=artist_detail&id=$aid'><img src='$aimage' alt='$aname'></a>";
-                    echo $aname;
+                    echo "<span style='top: 70px;right: 130px; position:relative;font-weight:15px;'>$aname</span>";
                 }
              }
             ?>
@@ -119,53 +118,38 @@
             justify-content: space-between;
             padding: 16px;
         }
-
         .pMusic{
-            
-
-            border-radius: 8px; 
-            margin-bottom: 20px;
-            border: 2px solid #ddd;
+            width: 129.5px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 0px;
-            gap: 8px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: var(--padding-sm) 0 0;
+            box-sizing: border-box;
+        }
 
-            width: 207px;
-            height: 252px;
-
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 13px;
-            line-height: 14px;
-
-
-            letter-spacing: 1px;
-            flex: none;
-            order: 0;
-            flex-grow: 1;
-            
+        .pMusic{
+            width: 577px;
+            border-radius: var(--br-9xs);
+            background-color: #E6E6E6;
+            flex-direction: column;
+            padding: var(--padding-5xs) var(--padding-5xl);
+            gap: 0 65.5px;
 
         }
         .pAlbum{
-            border-radius: 8px; 
-            margin-bottom: 20px;
-            border: 2px solid #ddd;
+            width: 480px;
+            height: 295px;
+            background-color: #E6E6E6;
             display: flex;
-            flex-direction: column;
+            padding: 20px;
+            gap: 12px 0;
+            border-radius: 16px;
+            flex-direction: row;
             align-items: center;
-            padding: 0px;
-            gap: 6px;
-
-            width: 207px;
-            height: 252px;
-
-            flex: none;
-            order: 2;
-            align-self: stretch;
-            flex-grow: 0;
+            justify-content: center;
+            box-sizing: border-box;
+            isolation: isolate;
 
 
         
@@ -176,11 +160,11 @@
         flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
-        align-content: flex-start;
-        padding: 0px;
+        justify-content: space-between;
+        align-content: space-between;
         gap: 16px;
 
-        width: 400px;
+        width: 460px;
         height: 252px;
 
         flex: none;
@@ -191,19 +175,31 @@
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        font-size: 13px;
-        line-height: 14px;
-        letter-spacing: 1px;
-        border-radius: 8px; 
+        font-size: 16px;
+        line-height: 14px;    
         margin-bottom: 20px;
-        border: 2px solid #ddd;    
+        
 
         }
-       
-        .pMusic img,
-        .pAlbum img,
-        .rightContent2 img {
+        .pAlbum img{
+            position: relative;
+            left: 20px;
+            top: -40px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 10px;
+            width:180px;
+            height: 120px;
+            order: 0;
+            flex-grow: 2;
 
+        }
+
+       .pMusic img{
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
@@ -213,7 +209,25 @@
             gap: 10px;
             width: 45px;
             height: 45px;
-            
+            position: relative;
+            top: 10px;
+            left:10px;
+            order: 0;
+            flex-grow: 2;
+       }
+        
+        .rightContent2 img {
+
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 10px;
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
             order: 0;
             flex-grow: 2;
 
@@ -221,14 +235,14 @@
         
         .rightContent {
             
-            left: 200px;
+            right:250px ;
             position: relative;
-            top: 13px;
+            top: 20px;
         }
         .pAlbum {
             
-            left: 100px;
-            top: 0px;
+            right: 570px;
+            top:380px;
             position: relative;
         }
         p {

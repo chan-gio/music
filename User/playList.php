@@ -98,3 +98,38 @@
         });
     });
 </script>
+<style>
+    .playList {
+        width: 300px; 
+        margin: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #playList {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    #playList li {
+        margin-bottom: 5px;
+    }
+
+    #addPlayList {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    #addPlayList:hover {
+        background-color: #2980b9;
+}
+</style>

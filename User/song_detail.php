@@ -346,4 +346,81 @@ async function increaseSongView(songId) {
         cursor: pointer;
 
     }
+    .songDetail {
+    padding: 20px;
+}
+
+/* Style for the modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+}
+
+.form-check-input {
+    margin-right: 10px;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+}
+
+.form-check-label {
+    font-size: 16px;
+    color: #333;
+}
+
+.group-button {
+    margin-top: 20px;
+}
+
+.btn-outline-danger {
+    background-color: transparent;
+    color: #d9534f;
+    border: 2px solid #d9534f;
+}
+
+.btn-outline-danger:hover {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+.btn-success {
+    background-color: #5cb85c;
+    color: #fff;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #4cae4c;
+}
 </style>

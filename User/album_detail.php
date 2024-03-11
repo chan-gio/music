@@ -280,7 +280,7 @@ if (!empty($songsArray)) {
     
     .albumDetail {
         position: relative;
-        right: 210px;
+        right: 280px;
         top: 120px;
         width: 440px;
         height: 252px;
@@ -290,6 +290,10 @@ if (!empty($songsArray)) {
         border: 1px solid #fff;
         border-radius: 8px;
         margin: 20px 0;
+    }
+    .albumDetail img{
+        width: 60px;
+        height: 60px;
     }
 
     .albumDetail ul {
